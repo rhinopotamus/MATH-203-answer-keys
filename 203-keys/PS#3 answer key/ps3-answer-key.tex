@@ -1,0 +1,163 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+
+\setlength{\headheight}{14.5pt}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\orth}{\operatorname{orth}}
+\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
+	
+% Solution text is in red. If you want the solutions to show, remove the \iffalse from the definition of the \red command.
+\newcommand{\red}[1]{ %\iffalse
+	\textcolor{red}{#1} }%\fi}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
+%
+\hyphenpenalty=5000
+\setlength{\parindent}{0in}
+%\oddsidemargin=-.25in
+\allowdisplaybreaks
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{MATH 203}
+\rhead{Fall 2019}
+%\lfoot{\copyright\ CLEAR Calculus 2010}
+\cfoot{}
+
+\begin{document}
+	%
+	
+	
+	%\onehalfspacing
+	\allowdisplaybreaks
+	%##################################################################
+	\section{PS\#3: Dot product, cross product, lines, and planes - \red{Answer key} }
+	
+	\begin{enumerate}[leftmargin=0pt]
+		\item In one of the WeBWorK problems, it talks about the orthogonal component of $\vu$ onto $\vv$:
+		$\orth_\vv \vu = \vu - \proj_\vv \vu$.
+		The idea is that the vector projection of $\vu$ onto $\vv$ is certainly parallel to $\vv$, so if we subtract that from $\vu$, we'll end up with exactly the part of $\vu$ that's orthogonal to $\vv$. Your job in this problem is to prove to me that this actually works: show, for some generic vectors $\vu$ and $\vv$ that $\orth_\vv \vu$ is indeed orthogonal to $\vv$.
+		
+		\red{
+			We can tell two vectors are orthogonal if their dot product is zero. So, let's compute $(\orth_\vv \vu) \dotp \vv$ and see if we get $0$ like we want:
+			\begin{align*}
+				(\orth_\vv \vu) \dotp \vv &= (\vu - \proj_\vv \vu) \dotp \vv 
+				= \left(\vu - \frac{\vu\dotp\vv}{|\vv|^2}\vv \right) \dotp \vv \\
+				&= \vu \dotp \vv - \left(\frac{\vu\dotp\vv}{|\vv|^2}\right)\vv\dotp\vv \\
+				\intertext{Now, note that the dot product of a vector with itself is the magnitude of that vector, squared:}
+				&= \vu \dotp \vv - \left(\frac{\vu\dotp\vv}{|\vv|^2}\right)|\vv|^2\\
+				&= \vu \dotp \vv - \vu \dotp \vv = 0
+			\end{align*}
+			Hooray, we're orthogonal.
+		}
+		
+		\item Explain \textit{geometrically} why $\vi \times \vj = \vk$ but $\vj \times \vi = -\vk$. (Don't just tell me that the cross product is anticommutative, explain why. Hint: see Preview Activity 1.4.1.) Then, compute the rest of the cross products between two different standard basis vectors (so, compute $\vi\times\vk$, $\vk\times\vi$, $\vj \times \vk$, etc.)
+		
+		\red{
+			The key to this problem is the right-hand rule. Point your right index finger along the first argument of the cross product, and your middle finger along the second. Then, your thumb points in the direction of the result.\\
+			$\vi$ points away from me, and $\vj$ points to my left. Therefore, the result of the cross product $\vi\times\vj$ points up, because that's where my thumb is, so the result is $\vk$.\\
+			By way of contrast, if I point my index finger to my left, then my middle finger to the front, that turns my hand upside down, so that $\vj\times\vi$ is in fact $-\vk$.\\
+			Here's all the cross products between two standard basis vectors, which I've figured out similarly: 
+			\begin{align*}
+				\vi\times\vj &=  \vk & \vi \times \vk &= -\vj & \vj \times\vk &= \vi \\
+				\vj\times\vi &= -\vk & \vk \times \vi &=  \vj & \vk \times\vj &= -\vi
+			\end{align*}
+		}
+	
+	\item (AC Multi 1.5 Exercise 12)This exercise explores key relationships between a pair of planes. Consider the following two planes: one with scalar equation $4x-5y+z = -2$, and the other which passes through the points $(1,1,1)$, $(0, 1, -1)$, and $(4, 2, -1)$.
+	\begin{enumerate}
+		\item Find a vector normal to the first plane.
+		
+		\red{
+			We can just read it off from the scalar equation: the vector $\langle 4, -5, 1\rangle$ is normal to the plane.
+		}
+		\item Find a scalar equation for the second plane.
+		
+		\red{
+			This will require some more computation. First, we need to turn our three points into two vectors that go between them. (Your work may be a little different from mine here, because you might subtract the vectors in a different order, and that's okay.)\\
+			Let's say that $\vu$ is the vector from $(1,1,1)$ to $(0,1,-1)$, so $\vu = \langle-1, 0, -2\rangle.$\\
+			Let's say that $\vv$ is the vector from $(1,1,1)$ to $(4, 2, -1)$, so $\vv = \langle 3, 1, -2 \rangle.$\\
+			Then we can get a normal vector $\vn$ by finding the cross product (this sounds like a good job for Wolfram$|$Alpha): $\vn = \langle 2, -8, -1 \rangle$. \\
+			Now let's identify one of the points as $P_0$ so that we can write down the vector equation of the plane, and then we can translate the vector equation into a scalar equation. I'll say $P_0 = (1, 1, 1)$, so that $\overrightarrow{PP_0} = \langle x-1, y-1, z-1\rangle$.\\
+			Then the vector equation is:
+			\begin{align*}
+				\vn\dotp\overrightarrow{PP_0} &= 0 \\
+				\langle 2, -8, -1 \rangle \dotp \langle x-1, y-1, z-1\rangle &= 0 \\
+				2(x-1) -8(y-1) -1(z-1) &= 0 
+				\intertext{This is certainly good enough, but we can simplify a little more if we want:}
+				2x - 2 -8y +8 -z + 1 &= 0 \\
+				2x -8y -z +7 &= 0 \\
+				2x - 8y - z &= -7
+			\end{align*}
+		}
+		\item Find the angle between the planes, where the angle between them is defined by the angle between their respective normal vectors.
+		
+		\red{Let's call the two normal vectors $\vn_1$ and $\vn_2$. Since $\vn_1 \dotp \vn_2 = |\vn_1|\cdot|\vn_2| \cdot \cos\theta$, where $\theta$ is the angle between the vectors, we can use the dot product to compute the angle between the vectors:
+			\begin{align*}
+				\cos\theta &= \frac{\vn_1 \dotp \vn_2}{|\vn_1|\cdot|\vn_2|} 
+				= \frac{\langle 4, -5, 1\rangle \dotp \langle 2, -8, -1 \rangle }{|\langle 4, -5, 1\rangle| \cdot |\langle 2, -8, -1 \rangle|}\\
+				&= \frac{4\cdot 2 + (-5)\cdot(-8) + 1 \cdot (-1)}{\sqrt{4^2 + (-5)^2 + 1^2} \cdot \sqrt{2^2 + (-8)^2 + (-1)^2}}\\
+				&= \frac{47}{\sqrt{42}\cdot\sqrt{69} } \\
+				\theta &= \arccos\left(\frac{47}{\sqrt{42}\cdot\sqrt{69}}\right)\\
+				&\approx 0.509 \quad (\approx 29.18^\circ)
+			\end{align*}
+		}
+		\item Find a point that lies on both planes.
+		
+		\red{
+			Let's solve both scalar equations for $z$, and then equate the two $z$'s. 
+			\begin{align*}
+				\textrm{Plane 1: } 4x - 5y + z &= -2 \\
+				z &= -2 -4x + 5y \\
+				\textrm{Plane 2: } 2x - 8y - z &= -7 \\
+				z &= 2x - 8y + 7 \\
+				-2 - 4x + 5y &= 2x - 8y + 7 \\
+				6x -13y &= -9
+				\intertext{Now we get to pick some value we want for one of these variables. How about $x=0$?}
+				-13y &= -9 \\
+				y &= \tfrac{9}{13}
+				\intertext{Cool, so now we have the $x$- and $y$-coordinates of a point that's on both planes. Substituting back into one of our $z$ equations:}
+				z &= -2 -4x +5y \\
+				&= -2 -4(0) + 5(\tfrac{9}{13}) = \tfrac{19}{13}
+			\end{align*}
+			Therefore, $(0, \tfrac{9}{13}, \tfrac{19}{13})$ is a point that lies on both planes.
+		}
+		\item Since these two planes do not have parallel normal vectors, the planes must intersect, and thus must intersect in a line. Observe that the line of intersection lies in both planes, and thus the direction vector of the line must be perpendicular to each of the respective normal vectors of the two planes. Find a direction vector for the line of intersection for the two planes.
+		
+		\red{
+			If we want a direction vector $\vv$ who's perpendicular to both of our two normal vectors $\vn_1$ and $\vn_2$, why don't we use the cross product? \\
+			$\vv = \vn_1 \times \vn_2 = \langle 4, -5, 1\rangle \times \langle 2, -8, -1 \rangle = \langle 13, 6, -22 \rangle$ (Thanks, W$|$A!)
+		}
+		\item Determine parametric equations for the line of intersection of the two planes.
+		
+		\red{
+			Alls we need is a direction vector and a point. But hey, we've got both of those! \\
+			$\mathbf{L}(t) = \mathbf{r}_0 + t \vv 
+			= \langle 0, \tfrac{9}{13}, \tfrac{19}{13} \rangle 
+			+ t \langle 13, 6, -22 \rangle
+			= \langle 0 + 13t, \tfrac{9}{13} + 6t, \tfrac{19}{13} - 22t \rangle$ \\
+			In parametric form:
+			\begin{align*}
+				x(t) &= 13t\\
+				y(t) &= \tfrac{9}{13} + 6t\\
+				z(t) &= \tfrac{19}{13} - 22t
+			\end{align*}
+		}
+	\end{enumerate}
+	
+	\end{enumerate}
+	
+	\red{\textbf{Learning Targets}: HBT1, 2, 3 (because hopefully you used W$|$A to compute cross products); V1, V2, V3, maybe V4. Maybe others?}
+	
+\end{document}

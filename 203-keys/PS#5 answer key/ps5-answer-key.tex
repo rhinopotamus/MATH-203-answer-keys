@@ -1,0 +1,156 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+
+\setlength{\headheight}{14.5pt}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\orth}{\operatorname{orth}}
+\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
+
+% Solution text is in red. If you want the solutions to show, remove the \iffalse from the definition of the \red command.
+%\newcommand{\red}[1]{ %\iffalse
+%	\textcolor{red}{#1} }%\fi}
+
+\newenvironment{red}{\color{red}}{\ignorespacesafterend}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
+%
+\hyphenpenalty=5000
+\setlength{\parindent}{0in}
+%\oddsidemargin=-.25in
+\allowdisplaybreaks
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{MATH 201}
+\rhead{Fall 2019}
+%\lfoot{\copyright\ CLEAR Calculus 2010}
+\cfoot{}
+
+\begin{document}
+%
+
+
+%\onehalfspacing
+\allowdisplaybreaks
+%##################################################################
+\section{PS\#5 - Arc length, curvature, limits - \red{Answer key} }
+
+\begin{enumerate}[leftmargin=0pt]
+    \item For any space curve $\vr(t)$, you can always find the unit tangent vector $\vT(t)$ by simply ``unitizing'' $\vr'(t)$:
+    \[\vT(t) = \frac{\vr'(t)}{|\vr'(t)|}\]
+    Explain why $|\vT(t)| = 1$ means that $\vT'(t)$ is orthogonal to $\vT(t)$ at every time $t$.
+    
+    (Hint: Consider $\vT \dotp \vT$. It might be nice to take the derivative of this, so that $\vT'$ shows up. Use the product rule. But also, note that $\vT \dotp \vT = |\vT|^2 = 1$, which is a constant. What's the derivative of a constant?)
+    
+    So, if you were going to define \textbf{the} unit normal vector $\vN(t)$, how might you define it? Why does your definition make sense?
+    
+    \begin{red}
+        Following the hint, I'm going to compute $\frac{d}{dt} \left[ \vT \dotp \vT\right]:$
+        \begin{align*}
+            \frac{d}{dt} \left[ \vT \dotp \vT\right] &= 
+            \frac{d}{dt}[\vT] \dotp \vT + \vT \dotp \frac{d}{dt}[\vT]\\
+            &= \vT' \dotp \vT + \vT \dotp \vT' \\
+            &= 2 (\vT' \dotp \vT)
+        \end{align*}
+        But on the other hand, since $\vT \dotp \vT = 1$, $\frac{d}{dt} \left[ \vT \dotp \vT\right]$ has to equal 0. Therefore, 
+        \[0 = 2 (\vT' \dotp \vT),\]
+        so $\vT'$ must be orthogonal to $\vT$. Yay!
+        
+        So, if I was going to define \textbf{the} unit normal vector $\vN(t)$, I might say $\vN(t) = \dfrac{\vT'(t)}{|\vT'(t)|}$. It's always orthogonal to $\vT(t)$, so it's always normal to the space curve $\vr(t)$.
+    \end{red}
+    
+    \item For each of the following prompts, provide an example of a function of two variables with the desired properties (with justification), or explain why such a function does not exist.
+    \begin{enumerate}
+        \item A function $p$ that is defined at $(0, 0)$, but $\lim_{(x, y) \to (0, 0)} p(x, y)$ does not exist.
+        
+        \begin{red}
+            How about we just take the example in Preview Activity 2.1.1, and define it a value at $(0, 0)$?
+            \[ p(x,y) = 
+            \begin{cases}
+                \frac{2xy}{x^2+y^2}, & (x, y) \neq (0, 0) \\
+                17, & (x, y) = (0, 0)
+            \end{cases}
+            \]
+            (Nothing special about the number 17. I just kinda picked it out of thin air.)
+            
+            Preview Activity 2.1.1 explains why the limit doesn't exist.
+        \end{red}
+        \item A function $q$ that does not have a limit at $(0, 0)$, but that has the same limiting value along any line $y=mx$ as $x \to 0$. 
+        
+        \begin{red}
+            Webwork 2.1 \#2 will be helpful here:
+            \[q(x,y) = \frac{x^{5}y}{x^{10}+y^{5}}\]
+            If we approach along $y = mx$, we're looking at $q(x, mx):$
+            \begin{align*}
+                q(x, mx) &= \frac{x^{5}\cdot (mx)}{x^{10}+(mx)^{5}}
+                = \frac{mx^6}{x^{10} + m^5 x^5} \\
+                &= \frac{mx^6}{x^5\cdot(x^5+m^5)} 
+                = \frac{mx}{x^5+m^5}
+            \end{align*}
+            So now we can let $x$ go to 0 without anything bad happening:
+            \[\lim_{x\to 0} q(x, mx) = \lim_{x \to 0} \frac{mx}{x^5+m^5} = \frac{m\cdot 0}{0^5 + m^5} = 0,\]
+            no matter what the value of $m$.
+            
+            However, something different will happen if we approach $(0, 0)$ along $y=x^5$:
+            \begin{align*}
+                q(x, x^5) &= \frac{x^{5}\cdot (x^5)}{x^{10}+(x^5)^{5}}
+                = \frac{x^{10}}{x^{10} + x^{25}} \\
+                &= \frac{x^{10}}{x^{10}\cdot(1 + x^{15})} 
+                = \frac{1}{1 + x^{15}}.
+            \end{align*}
+            Again, we can now let $x$ go to 0 without anything bad happening, but we get something different:
+            \[\lim_{x\to 0} q(x, x^5) = \lim_{x\to 0}\frac{1}{1 + x^{15}} = \frac{1}{1+0} = 1.\]
+            Therefore, the limit doesn't exist, because we've found two paths that give us different limiting values.
+        \end{red}
+        
+        \item A function $r$ that is continuous at $(0, 0)$, but $\lim_{(x, y) \to (0, 0)} r(x, y)$ does not exist.
+        
+        \begin{red}
+            This one's not gonna work. If $r$ is continuous at $(0, 0)$, the limit \textbf{must} exist -- and must in fact be the same value as the function value $r(0,0)$.
+        \end{red}
+        
+        \item A function $s$ such that 
+        \[\lim_{(x, x) \to (0, 0)} s(x, x) = 3 \quad \textrm{and} \quad
+        \lim_{(x, 2x) \to (0, 0)} s(x, 2x) = 6,\]
+        for which $\lim_{(x, x) \to (0, 0)} s(x, y)$ exists.
+        
+        \begin{red}
+            This one's not gonna work either. We've shown that there's two directions along which we can approach $(0, 0)$ that give us two different limiting values: along $y=x$, the limiting value is 3, but along $y=2x$, the limiting value is 6. Since there's two directions with two different limiting values, the overall limit can't exist.
+        \end{red}
+        
+        \item A function $t$ that is not defined at $(1, 1)$, but $\lim_{(x, x) \to (1, 1)} t(x, y)$ does exist.
+        
+        \begin{red}
+            One such function:
+            \[t(x, y) = \frac{(x^2-1)(y^2-1)}{(x-1)(y-1)}\]
+            Note that the numerator factors as $(x-1)(x+1)(y-1)(y+1)$. As long as $x\neq 1$, the $(x-1)$s that appear in the numerator and denominator can divide to 1. (This won't work when $x=1$, because $0/0$ is indeterminate.) When I'm taking the limit as $x$ \textbf{approaches} 1, $x$ doesn't \textbf{equal} 1 -- so we can divide that problematic term out. The same logic applies to the $y$ terms -- the overall value of the limit is 4.
+            
+            (Note that this is the same logic by which the limit definition of the derivative works.)
+        \end{red}
+    
+    \end{enumerate}
+
+\end{enumerate}
+
+\begin{red}
+\textbf{Learning Targets Reflection:} V1, V2, maybe S1, D2, D5. Maybe some others.
+\end{red}
+
+\end{document}
