@@ -1,0 +1,173 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+\usepackage{tikz}
+\usepackage[colorlinks]{hyperref}
+\usetikzlibrary{trees}
+
+\setlength{\headheight}{14.5pt}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\orth}{\operatorname{orth}}
+\newcommand\del\nabla
+\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
+
+% Solution text is in red. If you want the solutions to show, remove the \iffalse from the definition of the \red command.
+%\newcommand{\red}[1]{ %\iffalse
+%	\textcolor{red}{#1} }%\fi}
+
+\newenvironment{red}{\color{red}}{\ignorespacesafterend}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
+%
+\hyphenpenalty=5000
+\setlength{\parindent}{0in}
+%\oddsidemargin=-.25in
+\allowdisplaybreaks
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{MATH 203}
+\rhead{Spring 2020}
+%\lfoot{\copyright\ CLEAR Calculus 2010}
+\cfoot{}
+
+\begin{document}
+%
+
+
+%\onehalfspacing
+\allowdisplaybreaks
+%##################################################################
+\section{PS\#8 -- Directional derivatives and the gradient - \red{Answer key} }
+
+\begin{enumerate}[leftmargin=0pt]
+    
+    \item It's always true that the gradient points in the local direction of steepest ascent, but it's not always true that the gradient points directly at the maximum of the function. Give an example of something where the gradient doesn't point directly at the maximum. Explain why your example works. 
+    
+    \begin{red}
+    Personally, my favorite example is Grandeur Peak, which is that mountain that's sort of at the east end of 3300 South. It has a really striking switchback ridge of exposed rock a little to the south of the peak, as you view it from the valley. I think about the gradient every time I look at that mountain. :) 
+    
+    Here's an overhead satellite view I grabbed from Google Maps:
+    
+    \includegraphics[width=\textwidth]{203-keys/ps8-answer-key/grandeur.png}
+    
+    If you were standing directly on that ridge, the direction of steepest ascent would be along the ridge -- and the ridge points maybe $30^\circ$ or $45^\circ$ away from the peak.
+    
+    What's more, if you were standing in that little bowl right below the ridge, the direction of steepest ascent would be up to the top of the ridge, which is almost $180^\circ$ away from the peak!
+    \end{red}
+    
+    \item Here's an absolutely classic problem that I think is kind of a rite of passage for students in a multivariate calculus course: the lighthouse problem.
+    
+    In the lighthouse at Point Gradient, the lamp has been knocked slightly out of vertical, so that the axis is tilted just a little. When the light points east, the beam of light is inclined upward at 5 degrees. When the light points north, the beam of light is inclined upward at 2 degrees.
+    
+    \begin{enumerate}
+        \item The beam of light sweeps out a plane; let's call that plane $f(x, y)$ and say that the lighthouse is at the point $(0, 0)$ What's $f_x(0, 0)$, and what's $f_y(0, 0)$? (Hint: the answers aren't $5^\circ$ and $2^\circ$. Draw a picture and use some trigonometry to figure out the slopes.)
+        
+        \begin{red}
+        Slope is rise over run, yeah? So $f_x(0, 0) = \tan 5^\circ$, and  $f_y(0, 0) = \tan 2^\circ$.
+        
+        \begin{center}
+        \includegraphics[width=0.5\textwidth]{203-keys/ps8-answer-key/triangles.jpg}
+        \end{center}
+        \end{red}
+        \item What's $\del f(0, 0)$? 
+        
+        \begin{red}
+        $\del f(0, 0) = \langle f_x(0, 0), f_y(0, 0) \rangle = \langle \tan 5^\circ, \tan 2^\circ\rangle \approx \langle 0.087, 0.035\rangle$. 
+        
+        Note that this is a 2D vector that lives down on the map (the $xy$ plane), rather than pointing up into space.
+        \end{red}
+        \item Looking down from above on a map, in which direction is the light beam pointing when it's most significantly inclined from the horizontal? Explain. 
+        
+        \begin{red}
+        My one favorite fact about the gradient is that it points in the direction of steepest slope -- in other words, most significant incline from horizontal. So, the light beam points in the direction $\del f = \langle \tan 5^\circ, \tan 2^\circ\rangle$ when it's most significantly inclined from horizontal. This is about $21.76^\circ$ north of east.
+        \end{red}
+        \item What is the maximum angle of elevation of the plane of the light beam from horizontal? (Hint: you'll now have to do some inverse trigonometry.) 
+        
+        \begin{red}
+        My other favorite fact about the gradient is that its magnitude is the value of the steepest slope. In our case, $|\del f| = \sqrt{(\tan 5^\circ)^2 + (\tan 2^\circ)^2} \approx \sqrt{0.0089} \approx 0.0942.$ This is our rise over run: the plane of the beam of light is inclined by this amount from horizontal when it points in the direction of $\del f$. So if we were to draw a triangle again, we'd have a rise of 0.0942 and a run of 1, which means that our angle is $\arctan(0.0942) \approx 5.381^\circ.$
+        \end{red}
+        \item Do you think we should be worried about this amount of tilt? I'd hate to have a ship out there that isn't able to see the lighthouse because the beam is shooting too high.
+        
+        \begin{red}
+        (Your answer to this question might vary!) Let's say that at minimum, someone standing on board a ship is, like, 10 feet off the water. Some quick trig tells me that if a ship is more than $\dfrac{10}{\tan(5.381^\circ)} \approx 106$ feet away from the shore, the light beam could be going over their head to where they couldn't see it. Dang, that seems pretty close. I'm worried about this and I'm putting in for a repair order.
+        \end{red}
+    \end{enumerate}
+    \item (AC Multi 2.7 \#18) If a continuous function $f$ of a \textbf{single variable} has two critical numbers $c_1$ and $c_2$ at which $f$ has relative maximum values, then $f$ must have another critical number $c_3$, because ``it is impossible to have two mountains without some sort of valley in between. The other critical point can be a saddle point (a pass between the mountains) or a local minimum (a true valley).'' (From Calculus in Vector Spaces by Lawrence J. Corwin and Robert H. Szczarb.)
+    
+    Consider the function $f$ defined by $f(x,y) = 4x^2e^y -2x^4 -e^{4y}.$ (From Ira Rosenholz in the Problems Section of the Mathematics Magazine, Vol. 60 NO. 1, February 1987.) \textbf{Note:} This is a function of two variables, so it doesn't have to follow the rule outlined in the previous paragraph.
+    
+    Show that $f$ has exactly two critical points, and that $f$ has relative maximum values at each of these critical points. 
+    
+    \begin{red}
+    So we're looking for zeroes of the gradient.
+    \begin{align*}
+        \del f &= \langle f_x(x, y), f_y(x,y) \rangle \\
+        &= \langle 8x e^y - 8x^3, 4x^2 e^y - 4e^{4y} \rangle
+        \\
+        \intertext{Let's focus on the first component:}
+        0 &= 8x e^y - 8x^3 = 8x(e^y - x^2) \\
+        \intertext{So, either $x = 0$ or $e^y = x^2$. Note that $x=0$ is not going to make the second component zero, so we can discard it. From the second component,}
+        0 &= 4x^2 e^y - 4e^{4y} = 4e^y (x^2 - e^{3y}) \\
+        \intertext{So, either $e^y = 0$, which it never does, or $x^2 = e^{3y}$. Therefore, I've got two things that both have to be equal to $x^2$, so they must equal each other:}
+        e^y &= e^{3y} \\
+        y &= 3y \textrm{, so } y = 0 \\
+        \intertext{Therefore, }
+        x^2 &= e^0 = 1 \textrm{, so } x = \pm 1
+    \end{align*}
+    So, we have precisely two critical points: $(1, 0)$ and $(-1, 0)$. Let's use the discriminant to classify them. We need to calculate our second partials:
+    \[
+    \begin{array}{ll}
+       f_{xx} = 8e^y-24x^2  & f_{yx} = 8xe^y \\
+       f_{xy} = 8xe^y  & f_{yy} = 4x^2 e^y-16 e^{4y}
+    \end{array}
+    \]
+    At the critical point $(1, 0)$:
+    \[
+    \begin{array}{ll}
+        f_{xx} = 8e^0-24(1)^2 = -16 & f_{yx} = 8(1)e^0 = 8 \\
+        f_{xy} = 8(1)e^0 = 8 & f_{yy} = 4(1)^2 e^0 - 16 e^0 = -12
+    \end{array}
+    \]
+    So $D = (-16)(-12) - 8^2 = 128 > 0$, and $f_{xx} < 0$, so this is a maximum.
+    
+    At the critical point $(-1, 0)$:
+    \[
+    \begin{array}{ll}
+        f_{xx} = 8e^0-24(-1)^2 = -16 & f_{yx} = 8(-1)e^0 = -8 \\
+        f_{xy} = 8(1)e^0 = -8 & f_{yy} = 4(1)^2 e^0 - 16 e^0 = -12
+    \end{array}
+    \]
+    So $D = (-16)(-12) - (-8)^2 = 128 > 0$, and $f_{xx} < 0$, so this is a maximum.
+    \end{red}
+    
+    Explain how this function $f$ illustrates that it really is possible to have two mountains without some sort of valley in between. Use appropriate technology to draw the surface defined by $f$ to see graphically how this happens.
+    
+    \begin{red}
+    Yeah, so \href{https://www.monroecc.edu/faculty/paulseeburger/calcnsf/CalcPlot3D/?type=z;z=4x^2e^y-2x^4-e^(4y);visible=true;umin=-2;umax=2;vmin=-2;vmax=2;grid=50;format=normal;alpha=-1;constcol=rgb(255,0,0);view=0;contourcolor=red;fixdomain=false&type=window;hsrmode=3;nomidpts=true;anaglyph=-1;center=2.507369696231452,8.657081705234903,4.332208854072867,1;focus=0,0,0,1;up=-0.3279946341240409,-0.34507444582480573,0.8793993102251901,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=-2;xmax=2;ymin=-2;ymax=2;zmin=-2;zmax=2;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=0.886667;xscalefactor=1;yscalefactor=1;zscalefactor=1}{check this function out} (that's clickable and takes you to CalcPlot3D):
+    
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{203-keys/ps8-answer-key/CalcPlot3D-plot.png}
+    \end{center}
+    
+    So there kind of \textbf{is} a valley between the two mountains, but there's no point at the bottom of the valley, because the valley just continues down forever without ever hitting a critical point.
+    \end{red}
+    \end{enumerate}
+
+\end{document}
