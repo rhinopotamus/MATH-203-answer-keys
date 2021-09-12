@@ -1,0 +1,179 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+\usepackage[colorlinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\setlength{\headheight}{14.5pt}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\orth}{\operatorname{orth}}
+\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
+
+% Solution text is in red. If you want the solutions to show, remove the \iffalse from the definition of the \red command.
+%\newcommand{\red}[1]{ %\iffalse
+%	\textcolor{red}{#1} }%\fi}
+
+\newenvironment{red}{\color{red}}{\ignorespacesafterend}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
+%
+\hyphenpenalty=5000
+\setlength{\parindent}{0in}
+%\oddsidemargin=-.25in
+\allowdisplaybreaks
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{MATH 203}
+\rhead{Fall 2020}
+%\lfoot{\copyright\ CLEAR Calculus 2010}
+\cfoot{}
+
+\begin{document}
+%
+
+
+%\onehalfspacing
+\allowdisplaybreaks
+%##################################################################
+\section{PS\#7 -- Linearization and differentials - \red{Answer key} }
+
+(Assignment: Pick your two favorite parts of \href{https://activecalculus.org/vector/S-10-4-Linearization.html#A_10_4_12}{Activity 10.4.4} and \href{https://activecalculus.org/vector/S-10-4-Linearization.html#Ez_10_4_3}{Exercise 10.4.14}.)
+
+\begin{enumerate}[leftmargin=0pt]
+    
+    \item[10.4.4a] Suppose that the elevation of a landscape is given by the function $h$, where we additionally know that $h(3,1) = 4.35$, $h_x(3, 1) = 0.27$, and $h_y(3, 1) = -0.19$. Assume that $x$ and $y$ are measured in miles in the easterly and northerly directions, respectively, from some base point $(0, 0)$. Your GPS device says that you are currently at the point $(3, 1)$. However, you know that the coordinates are only accurate to within $0.2$ units; that is, $dx = \Delta x = 0.2$ and $dy = \Delta y = 0.2$. Estimate the uncertainty in your elevation using differentials.
+    
+    \begin{red}
+    The total differential in $h$ at the point $(3, 1)$ is given by
+    \[dh = h_x(3, 1)\ dx + h_y(3, 1)\ dy.\]
+    All we have to do is throw in our values:
+    \[dh = 0.27 \cdot 0.2 + (-0.19)\cdot 0.2 = 0.016.\]
+    Notice, however, that $dy$ could also be negative, which would provide a slightly larger value for $dh$:
+    \[dh = 0.27 \cdot 0.2 + (-0.19)\cdot (-0.2) = 0.092.\]
+    So, our actual height could be anywhere between $4.35-0.092 = 4.258$ and $4.35 + 0.092 = 4.442$.
+    \end{red}
+    
+    \item[10.4.4b] The pressure, volume, and temperature of an ideal gas are related by the equation \[P=P(T,V)=\frac{8.31T}{V},\] where $P$ is measured in kilopascals, $V$ in liters, and $T$ in kelvin. Find the pressure when the volume is 12 liters and the temperature is 310 K. Use differentials to estimate the change in the pressure when the volume increases to 12.3 liters and the temperature decreases to 305 K.
+    
+    \begin{red}
+    We'll start by computing some stuff we'll need:
+    \begin{align*}
+        P(310, 12) &= \frac{8.31\cdot310}{12} = \SI{214.675}{kPa} \\
+        P_T(T, V) &= \frac{8.31}{V}
+        &P_T(310, 12) = \frac{8.31}{12} = \SI{0.6925}{kPa / K}\\
+        P_V(T, V) &= \frac{-8.31\cdot T}{V^2}
+        &P_V(310, 12) = \frac{-8.31\cdot 310}{12^2} \approx \SI{-17.89}{kPa / L}
+    \end{align*}
+    If the volume increases to \SI{12.3}{L}, then $dV = \SI{0.3}{L}$, and if the temperature decreases to \SI{305}{K}, then $dT = \SI{-5}{K}$. The total differential in P is given by 
+    \begin{align*}
+        dP &= P_V(310, 12) \cdot dV + P_T(310, 12) \cdot dT \\
+        &= \SI{-17.89}{kPa / L} \cdot \SI{0.3}{L} + \SI{0.6925}{kPa / K}\cdot \SI{-5}{K} \\
+        &= \SI{-8.8295 }{kPa}
+    \end{align*}
+    So, the pressure should drop by \SI{8.8295 }{kPa}, down to \SI{205.8455}{kPa} or so. (Indeed, $P(305, 12.3) \approx \SI{206.061}{kPa}$.)
+    \end{red}
+    \pagebreak
+    
+    \item[10.4.4c] Refer to the table below, the table of values of the wind chill $w(v, T)$, in degrees Fahrenheit, as a function of temperature, also in degrees Fahrenheit, and wind speed, in miles per hour. Suppose your anemometer says the wind is blowing at $25$ miles per hour and your thermometer shows a reading of $-15^\circ$F. However, you know your thermometer is only accurate to within $2^\circ$F and your anemometer is only accurate to within 3 miles per hour. What is the wind chill based on your measurements? Estimate the uncertainty in your measurement of the wind chill.
+\[\begin{array}{rrrrrrrrrrrr}
+\hline v \backslash T & -30 & -25 & -20 & -15 & -10 & -5 & 0 & 5 & 10 & 15 & 20 \\
+\hline 5 & -46 & -40 & -34 & -28 & -22 & -16 & -11 & -5 & 1 & 7 & 13 \\
+\hline 10 & -53 & -47 & -41 & -35 & -28 & -22 & -16 & -10 & -4 & 3 & 9 \\
+\hline 15 & -58 & -51 & -45 & -39 & -32 & -26 & -19 & -13 & -7 & 0 & 6 \\
+\hline 20 & -61 & -55 & -48 & -42 & -35 & -29 & -22 & -15 & -9 & -2 & 4 \\
+\hline 25 & -64 & -58 & -51 & -44 & -37 & -31 & -24 & -17 & -11 & -4 & 3 \\
+\hline 30 & -67 & -60 & -53 & -46 & -39 & -33 & -26 & -19 & -12 & -5 & 1 \\
+\hline 35 & -69 & -62 & -55 & -48 & -41 & -34 & -27 & -21 & -14 & -7 & 0 \\
+\hline 40 & -71 & -64 & -57 & -50 & -43 & -36 & -29 & -22 & -15 & -8 & -1 \\
+\hline
+\end{array}\]
+
+\begin{red}
+$w(25, -15) = -44 ^\circ\textrm{F}$, and we know that $dT = \pm 2 ^\circ\textrm{F}$ and $dv = \pm 3$ mph. We need to estimate the partial derivatives:
+\begin{align*}
+    w_v(25, -15) &\approx \frac{w(30, -15) - w(20, -15)}{30-20} = \frac{-46-(-42)}{10} = -0.4\ ^\circ\textrm{F} / \textrm{mph}\\
+    w_T(25, -15) &\approx \frac{w(25, -10) - w(25, -20)}{-10-(-20)} = \frac{-37-(-51)}{10} = 1.4\ ^\circ\textrm{F} / ^\circ\textrm{F}
+\end{align*}
+The total differential is
+\begin{align*}
+dw &=  w_v(25, -15) \cdot dv +  w_T(25, -15)\cdot dT \\
+&= -0.4\ ^\circ\textrm{F} / \textrm{mph} \cdot dv 
++  1.4\ ^\circ\textrm{F} / ^\circ\textrm{F} \cdot dT \\
+\intertext{Note that we get the largest errors if $dv$ is negative and $dT$ is positive:}
+dw &= -0.4\ ^\circ\textrm{F} / \textrm{mph} \cdot (-3 \textrm{ mph}) 
++  1.4\ ^\circ\textrm{F} / ^\circ\textrm{F} \cdot 2 ^\circ\textrm{F} \\
+&= 4\ ^\circ\textrm{F}
+\end{align*}
+So, the windchill might be anywhere between $-44 - 4 = -48\ ^\circ\textrm{F}$ and $-44+4 = -40\ ^\circ\textrm{F}$.
+\end{red}
+    
+\item[14a.] Let $f$ represent the vertical displacement in centimeters from the rest position of a string (like a guitar string) as a function of the distance $x$ in centimeters from the fixed left end of the string and $y$ the time in seconds after the string has been plucked. A simple model for $f$ could be \[f(x, y) = \cos(x)\sin(2y).\]
+Use the differential to approximate how much more this vibrating string is vertically displaced from its position at $(a,b) = \left(\tfrac{\pi}{4}, \tfrac{\pi}{3}\right)$ if we decrease $a$ by $0.01$ cm and increase the time by 0.1 seconds. Compare to the value of $f$ at the point $\left(\tfrac{\pi}{4}-0.01, \tfrac{\pi}{3}+0.1\right)$.
+        
+        \begin{red}
+        First let's compute the partial derivatives:
+        \begin{align*}
+            f_x(x,y) &= -\sin(x)\sin(2y) \\
+            f_x\left(\frac{\pi}{4}, \frac{\pi}{3}\right)
+            &= -\sin\left(\frac{\pi}{4}\right) \sin\left(2\cdot\frac{\pi}{3}\right) = -\frac{\sqrt{6}}{4} \approx -0.6124 \\
+            f_y(x,y) &= 2\cos(x)\cos(2y) \\
+            f_y\left(\frac{\pi}{4}, \frac{\pi}{3}\right)
+            &=2\cos\left(\frac{\pi}{4}\right)\cos\left(2\cdot\frac{\pi}{3}\right) = -\frac{\sqrt{2}}{2} \approx -0.7071 \\
+            \intertext{Now we can write down the differential:}
+            df &= f_x\left(\frac{\pi}{4}, \frac{\pi}{3}\right) dx + f_y\left(\frac{\pi}{4}, \frac{\pi}{3}\right) dy \\
+            &= -0.6124\, dx - 0.7071\, dy \\
+            \intertext{We're given that $dx=-0.01$ and $dy=0.1$, so}
+            df &= -0.6124\cdot(-0.01) - 0.7071\cdot 0.1 = -0.064586.
+        \end{align*}
+        The value of $f$ at the point $\left(\tfrac{\pi}{4}-0.01, \tfrac{\pi}{3}+0.1\right)$ is about 0.5351982. The value of $f$ at the point $\left(\tfrac{\pi}{4}, \tfrac{\pi}{3}\right)$ is about 0.6123724. That makes for an actual change $\Delta f$ of $ 0.5351982 - 0.6123724 = -0.0771742,$ which is pretty close to the approximate change $df$ we calculated.
+        \end{red}
+        
+\item[14b.] Resistors used in electrical circuits have colored bands painted on them to indicate the amount of resistance and the possible error in the resistance. When three resistors, whose resistances are $R_1$, $R_2$, and $R_3$, are connected in parallel, the total resistance $R$ is given by \[\frac1R = \frac1{R_1} + \frac1{R_2} + \frac1{R_3}.\]
+Suppose that the resistances are $R_1 = 25\Omega$, $R_2 = 40\Omega$, and $R_3 = 50\Omega$. Find the total resistance $R$. If you know each of $R_1$, $R_2$, and $R_3$ with a possible error of $0.5\%$, estimate the maximum error in your calculation of $R$.
+        
+        \begin{red}
+        So, first of all, the total resistance:
+        \begin{align*}
+            \frac1R &= \frac1{R_1} + \frac1{R_2} + \frac1{R_3} \\
+            &= \frac{1}{25} + \frac{1}{40} + \frac{1}{50} = \frac{17}{200} \\
+            R &= \frac{200}{17} \approx 11.7647.
+        \end{align*}
+        We now need to figure out each of the differentials, which should be $0.5\%$ of each resistance value. So, $dR_1 = 0.005\cdot 25 = 0.125$, $dR_2 = 0.005\cdot 40 = 0.2$, and $dR_3 = 0.005\cdot 50 = 0.25$.
+        
+        Writing down the total differential is going to be a little tricky because we don't have $R$ by itself. We could certainly write
+        \[R = \frac{1}{\frac1{R_1} + \frac1{R_2} + \frac1{R_3}},\]
+        but I would really rather not find partial derivatives of that beast. Instead, I'm going to use implicit differentiation:
+        \begin{align*}
+            -\frac{1}{R^2}\,dR &= -\frac{1}{R_1^2}\,dR_1 - \frac{1}{R_2^2}\,dR_2 - \frac{1}{R_3^2}\,dR_3 \\
+            dR &= R^2\cdot \left( \frac{1}{R_1^2}\,dR_1 + \frac{1}{R_2^2}\,dR_2 + \frac{1}{R_3^2}\,dR_3 \right) \\
+            &= \left(\frac{200}{17}\right)^2\cdot\left(
+            \frac{1}{25^2}\cdot0.125 + \frac{1}{40^2}\cdot0.2+ \frac{1}{50^2}\cdot0.25
+            \right) \\
+            &\approx 0.058824.
+        \end{align*}
+        (This is actually just about 0.5\% of the computed value of $R$, which is interesting.)
+        
+        If you're slightly freaked out about this implicit differentiation thing, I don't blame you, because I've hidden some details. Here's what's really going on. Consider a new function $W(R, R_1, R_2, R_3) = \frac1{R_1} + \frac1{R_2} + \frac1{R_3} - \frac1R$. Our total resistance function is just the $0$-contour of this function. So what we're doing is, we're finding $dW$ in terms of $dR$, $dR_1$, $dR_2$, and $dR_3$. Then we just note that $dW = 0$ since we're moving around on the same contour, and then we can solve for $dR$ in terms of $dR_1$, $dR_2$, and $dR_3$.
+        \end{red}
+        
+\end{enumerate}
+
+\end{document}
