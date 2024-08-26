@@ -1,6 +1,7 @@
 \documentclass[10pt]{article}
 \usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
-\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, mathptmx, siunitx}
+
 
 \usepackage{hyperref}
 \hypersetup{
@@ -46,6 +47,42 @@
 \section{PS\#2: Multivariate functions - \red{Answer key} }
 
 \begin{enumerate}[leftmargin=0pt]
+    \item (\href{https://activecalculus.org/multi/S-9-1-Functions.html#A-9-1-4}{ACM Activity 9.1.5}) Let $P = (x_0, y_0, z_0)$ and $Q = (x_1, y_1, z_1)$ be two points in $\R^3$. These two points form opposite vertices of a rectangular box whose sides are planes parallel to the coordinate planes, as illustrated in Figure 9.1.10, and the distance between $P$ and $Q$ and is the length of the blue diagonal shown in Figure 9.1.10.
+    \begin{enumerate}
+        \item Consider the right triangle $PRS$ in the base of the box whose hypotenuse is shown as the red line in Figure 9.1.10. What are the coordinates of the vertices of this triangle? 
+        
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{../images/9-1-5-coords.png}
+        \end{center}
+        
+        \begin{red}
+            Assuming the standard right-hand-rule setup -- I've added purple axes to the figure above -- $+z$ is up, $+y$ is to the right, and $+x$ comes out of the page. Therefore, the coordinates of $S$ are $(x_0, y_1, z_0)$, since it's at the same position along the $x$-axis and along the $z$-axis as the point $P$, but in a different place on the $y$-axis.
+
+            Similarly, the coordinates of $R$ are $(x_1, y_1, z_0)$, since it's at the same position along the $x$-axis and along the $y$-axis as the point $Q$, but in a different place on the $z$-axis.
+        \end{red}
+
+        Since this right triangle lies in a plane, we can use the Pythagorean Theorem to find a formula for the length of the hypotenuse of this triangle. Find such a formula, which will be in terms of $x_0$, $y_0$, $x_1$, and $y_1$.
+
+        \begin{red}
+            The line $PS$ has length $y_1 - y_0$, and the line $RS$ has length $x_1 - x_0$. Therefore the hypotenuse $PR$ has length $\sqrt{(x_1 - x_0)^2 + (y_1 - y_0)^2}$.
+        \end{red}
+
+        \item Now notice that the triangle $PRQ$ whose hypotenuse is the blue segment connecting the points $P$ and $Q$ and with a leg as the hypotenuse of the triangle found in part (a) lies entirely in a plane, so we can again use the Pythagorean Theorem to find the length of its hypotenuse. Explain why the length of this hypotenuse, which is the distance between the points $P$ and $Q$, is 
+        \begin{equation*}
+            \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}.
+        \end{equation*}
+        \begin{red}
+            The length of the segment $RQ$ is $z_1 - z_0$. Therefore, by the Pythagorean Theorem, 
+            \begin{align*}
+                PQ &= \sqrt{PR^2 + RQ^2} \\
+                &= \sqrt{\left[\sqrt{(x_1 - x_0)^2 + (y_1 - y_0)^2}\right]^2 + RQ^2} \\
+                &= \sqrt{(x_1 - x_0)^2 + (y_1 - y_0)^2+RQ^2} \\
+                &= \sqrt{(x_1 - x_0)^2 + (y_1 - y_0)^2 + (z_1 - z_0)^2}
+            \end{align*}
+        \end{red}
+    \end{enumerate}
+
+
     \item (\href{https://activecalculus.org/multi/S-9-1-Functions.html#Ez-9-1-2}{ACM 9.1 Exercise 15}) The Ideal Gas Law, $PV = RT$, relates the pressure ($P$, in pascals), temperature ($T$, in Kelvin), and volume ($V$, in cubic meters) of 1 mole of a gas ($R = \SI[per-mode=fraction]{8.314}{\J\per\mol\per\K}$ is the universal gas constant), and describes the behavior of gases that do not liquefy easily, such as oxygen and hydrogen. We can solve the ideal gas law for the volume and hence treat the volume as a function of the pressure and temperature:
     \[V(P, T) = \frac{8.314T}{P}.\]
     \begin{enumerate}
@@ -77,7 +114,7 @@
         Here's a graph of $z = 8.314 x/y$ in CalcPlot3D: \href{https://www.monroecc.edu/faculty/paulseeburger/calcnsf/CalcPlot3D/?type=z;z=8.314x/y;visible=true;umin=0;umax=400;vmin=1;vmax=100000;grid=30;format=normal;alpha=-1;constcol=rgb(255,0,0);view=0;contourcolor=red;fixdomain=false&type=window;hsrmode=3;nomidpts=true;anaglyph=-1;center=8.143342228569376,4.968016931136566,3.0007974140782387,1;focus=0,0,0,1;up=-0.2318433831714125,0.0028667885942549737,0.9727489024423465,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=0;xmax=400;ymin=1;ymax=100000;zmin=0;zmax=2;xscale=100;yscale=10000;zscale=1;zcmin=0;zcmax=2;zoom=0.000035;xscalefactor=400;yscalefactor=1;zscalefactor=50000}{Click me}\end{red}
         
         \begin{center}
-        \includegraphics[width=0.5\textwidth]{203-keys/images/ideal-gas.png}
+        \includegraphics[width=0.5\textwidth]{../images/ideal-gas.png}
         \end{center}
         \item Based on all your work above, write a couple of sentences that describe the effects that temperature and pressure have on volume.
         
@@ -129,7 +166,7 @@
         \end{align*}
         Okay, so that's a perfectly fine function of $r$ that we now have for $t$. We can graph it:\\
         \begin{center}
-            \includegraphics[scale=0.09]{203-keys/images/geogebra-export.png}\\
+            \includegraphics[scale=0.09]{../images/9-1-16-duration-rate.png}
         \end{center}
         
         Some notes on the domain and range: reasonable values of $r$ are probably very small, because $r$ is our interest rate written as a proportion -- that is, an interest rate of $5\%$ is written as $r = 0.05$. $t$ is the number of years, so we can expect it to be probably around 10 or something.
@@ -176,9 +213,10 @@
             Similarly, the level curves at $z=7, 7.5, 8$ are circles with radius $\sqrt{3} \approx 1.73$, $\sqrt{3.75} \approx 1.94$, and $2$, respectively.
         \end{red}
         \begin{center}
-            \includegraphics[width=0.6\textwidth]{203-keys/images/9-1-17-level-curves.png}
+            \includegraphics[width=0.6\textwidth]{../images/9-1-17-level-curves.png}
         \end{center}
         
+
 
         \item Choose 5 different values of $x$ (including at least one negative value and zero), and sketch the corresponding traces of the function $h$.
 
@@ -189,11 +227,11 @@
                 h(-0.5, y) &= 8-\sqrt{4-(-0.5)^2-y^2} = 8 - \sqrt{3.75-y^2} \\
                 h(0, y) &= 8-\sqrt{4-(0)^2-y^2} = 8 - \sqrt{4-y^2} \\
                 h(0.5, y) &= 8-\sqrt{4-(0.5)^2-y^2} = 8 - \sqrt{3.75-y^2} \\
-                h(1, y) &= 8-\sqrt{4-(1)^2-y^2} = 8 - \sqrt{3-y^2} \\
+                h(1, y) &= 8-\sqrt{4-(1)^2-y^2} = 8 - \sqrt{3-y^2} 
             \end{align*}
             These are all semicircles:
             \begin{center}
-                \includegraphics[width=0.6\textwidth]{203-keys/images/9-1-17-traces.png}
+                \includegraphics[width=0.6\textwidth]{../images/9-1-17-traces.png}
             \end{center}
             Notice in particular there's a symmetry with positive vs. negative values for $x$.
         \end{red}
@@ -203,15 +241,23 @@
         \begin{red}
             These are totally the same!
             \begin{align*}
-                h(x, -1) &= 8-\sqrt{4-(-1)^2-y^2} = 8 - \sqrt{3-y^2} \\
-                h(-0.5, y) &= 8-\sqrt{4-(-0.5)^2-y^2} = 8 - \sqrt{3.75-y^2} \\
-                h(0, y) &= 8-\sqrt{4-(0)^2-y^2} = 8 - \sqrt{4-y^2} \\
-                h(0.5, y) &= 8-\sqrt{4-(0.5)^2-y^2} = 8 - \sqrt{3.75-y^2} \\
-                h(1, y) &= 8-\sqrt{4-(1)^2-y^2} = 8 - \sqrt{3-y^2} \\
+                h(x, -1) &= 8-\sqrt{4-(-1)^2} = 8 - \sqrt{3-x^2} \\
+                h(x,-0.5) &= 8-\sqrt{4-x^2-(-0.5)^2} = 8 - \sqrt{3.75-x^2} \\
+                h(x,0) &= 8-\sqrt{4-x^2-(0)^2} = 8 - \sqrt{4-x^2} \\
+                h(x,0.5) &= 8-\sqrt{4-x^2-(0.5)^2} = 8 - \sqrt{3.75-x^2} \\
+                h(x,1) &= 8-\sqrt{4-x^2-(1)^2} = 8 - \sqrt{3-x^2} 
             \end{align*}
         \end{red}
 
         \item Sketch an overall picture of the surface generated by $h$ and write at least one sentence to describe how the surface appears visually. Does the surface remind you of a familiar physical structure in nature?
+        
+        \begin{red}
+            It's a spherical bowl! \href{https://c3d.libretexts.org/CalcPlot3D/index.html?type=z;z=8-sqrt(4-x%5E2-y%5E2);funname=f;visible=true;umin=-4;umax=4;vmin=-4;vmax=4;grid=31;format=normal;alpha=-1;hidemyedges=false;constcol=rgb(255,0,0);view=0;contourcolor=red;fixdomain=false;activetrace=false;contourplot=true;showcontourplot=false;firstvalue=-1;stepsize=0.2;numlevels=11;list=;uselist=false;xnum=46;ynum=46;show2d=false;hidesurface=false;hidelabels=true;showprojections=false;surfacecontours=true;projectioncolor=rgba(255,0,0,1);showxygrid=false;showxygridonbox=false;showconstraint=false&type=window;showfunnot=false;hsrmode=0;nomidpts=true;anaglyph=-1;center=8.236391035463319,4.755282581475766,3.0901699437494745,1;focus=0,0,0,1;up=0,0,2,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;shownormals=false;shownormalsatpts=false;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.7500000000000002;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);lastaddedsurfaceactive=true;disabletrace=false;activefun=-1;xmin=-4;xmax=4;ymin=-4;ymax=4;zmin=0;zmax=8;xscale=4;yscale=4;zscale=4;zcmin=-16;zcmax=16;xscalefactor=1;yscalefactor=1;zscalefactor=1;tracemode=0;keep2d=false;zoom=0.576471}{(Click me!)}
+
+            \begin{center}
+                \includegraphics[width=0.6\textwidth]{../images/9-1-17-bowl.png}
+            \end{center}
+        \end{red}
     \end{enumerate}
 \end{enumerate}
 
