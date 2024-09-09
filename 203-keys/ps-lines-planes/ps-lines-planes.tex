@@ -1,6 +1,13 @@
 \documentclass[10pt]{article}
 \usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
-\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, mathptmx, siunitx}
+
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
 
 \setlength{\headheight}{14.5pt}
 \newcommand{\Q}{\mathbb{Q}}
@@ -13,6 +20,7 @@
 \newcommand{\vj}{\mathbf{j}}
 \newcommand{\vk}{\mathbf{k}}
 \newcommand{\vn}{\mathbf{n}}
+\newcommand{\vr}{\mathbf{r}}
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\orth}{\operatorname{orth}}
 \newcommand{\comp}{\operatorname{comp}}
@@ -31,7 +39,7 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{MATH 203}
-\rhead{Spring 2020}
+\rhead{Fall 2024}
 %\lfoot{\copyright\ CLEAR Calculus 2010}
 \cfoot{}
 
@@ -42,11 +50,86 @@
 %\onehalfspacing
 \allowdisplaybreaks
 %##################################################################
-\section{PS\#4: Lines and planes - \red{Answer key} }
+\section{PS\#3: Lines and planes - \red{Answer key} }
 
 \begin{enumerate}[leftmargin=0pt]
 
-\item (AC Multi 9.5 Exercise 12) This exercise explores key relationships between a pair of planes. Consider the following two planes: one with scalar equation $4x-5y+z = -2$, and the other which passes through the points $(1,1,1)$, $(0, 1, -1)$, and $(4, 2, -1)$.
+\item (\href{https://activecalculus.org/multi/S-9-5-Lines-Planes.html#Ez_9_5_1}{AC Multi 9.5 Exercise 10})  The vector and parametric forms of a line allow us to easily describe line segments in space.
+
+Let $P_1 = (1, 2, -1)$ and $P_2 = (-2, 1, 2)$, and let $\mathcal{L}$ be the line in $\R^3$ through $P_1$ and $P_2$, as in Activity 9.5.2. 
+\begin{red}
+	As a reminder, we decided that the line $\mathcal{L}$ has the vector equation $\vr(t) = \langle 1, 2, -1 \rangle + t\,\langle -3, -1, -1 \rangle$.
+\end{red}
+\begin{enumerate}
+	\item What value of the parameter $t$ makes $(x(t), y(t), z(t)) = P_1$? What value of $t$ makes $(x(t), y(t), z(t)) = P_2$? 
+	
+	\begin{red}
+		In this parameterization of the line, $t=0$ corresponds to $P_1$ and $t=1$ corresponds to $P_2$.
+	\end{red}
+	\item What $t$ values describe the line segment between the points $P_1$ and $P_2$?
+	
+	\begin{red}
+		Unsurprisingly, the $t$ values between 0 and 1: $t\in[0, 1]$, or in other words $0 \leq t \leq 1$.
+	\end{red}
+	\item What about the line segment (along the same line) from $(7,4,1)$ to $(-8, -1, -4)$?
+	
+	\begin{red}
+		The point $(7,4,1)$ corresponds to $t = -2$ and the point $(-8, -1, -4)$ corresponds to $t = 3$. Therefore, this segment corresponds to the $t$ values $-2 \leq t \leq 3$.
+	\end{red}
+	\item Now, consider a segment that lies on a different line: parameterize the segment that connects point $R=(4, -2, 7)$ to $Q = (-11, 4, 27)$ in such a way that $t=0$ corresponds to point $Q$, while $t=2$ corresponds to $R$.
+	
+	\begin{red}
+		If we want $t=0$ to correspond to point $Q$, then we should use the vector $\overrightarrow{OQ} = \langle -11, 4, 28 \rangle$ as our initial vector $\vr_0$. Then the direction vector should be in the direction of $\overrightarrow{QP} = \langle 4-(-11), -2-4, 7-27 \rangle = \langle 15, -6, -20\rangle$. 
+		
+		However, if we just used that vector as-is, then the point $P$ would correspond to $t=1$. Let us therefore cut $\overrightarrow{QP}$ in half. The vector equation of this line is therefore:
+		\[\vr(t) = \langle -11, 4, 27 \rangle + t\cdot\left\langle \frac{15}{2}, \frac{-6}{2}, \frac{-20}{2}\right\rangle.\]
+	\end{red}
+\end{enumerate}
+	
+\item (\href{https://activecalculus.org/multi/S-9-5-Lines-Planes.html#Ez_9_5_2}{AC Multi 9.5 Exercise 11}) This exercise explores key relationships between a pair of lines. Consider the following two lines: one with parametric equations $x(s) = 4 - 2s$, $y(s) = -2 + s$, $z(s) = 1+3s$, and the other being the line through $(-4,2,17)$ in the direction $\vv = \langle -2, 1, 5\rangle$.
+\begin{enumerate}
+	\item Find a direction vector for the first line, which is given in parametric form.
+	
+	\begin{red}
+		This line points in the direction of the vector $\vw = \langle -2, 1, 3\rangle$.
+	\end{red}
+	\item Find parametric equations for the second line, written in terms of the parameter $t$.
+	
+	\begin{red}
+		$x(t) = -4 - 2t$, $y(t) = 2+1t$, and $z(t) = 17+5t$.
+	\end{red}
+	\item Show that the two lines intersect at a single point by finding the values of $s$ and $t$ that result in the same point. Then find the point of intersection.
+	
+	\begin{red}
+		We want to solve the system of equations:
+		\begin{align*}
+			4 - 2s &= -4 - 2t \\
+			-2 + s &= 2 + 1t \\
+			1 + 3s &= 17 + 5t
+		\end{align*}
+		A bit of boring algebra that I won't reproduce here leads us to the solution $s = -2$, $t = -2$. Both $s = 2$ and $t = -2$ correspond to the point $(0, 0, 7)$ (check!).
+	\end{red}
+	\item Find the acute angle formed where the two lines intersect, noting that this angle will be given by the acute angle between their respective direction vectors.
+	
+	\begin{red}
+		\begin{align*}
+			\cos\theta &= \dfrac{\vv \dotp \vw}{|\vv|\cdot|\vw|}
+			= \dfrac{\langle -2, 1, 5 \rangle \dotp \langle -2, 1, 3 \rangle}{\sqrt{(-2)^2 + 1^2 + 5^2} \cdot \sqrt{(-2)^2 + 1^2 + 3^2}} = \dfrac{4 + 1 + 15}{\sqrt{30} \cdot \sqrt{14}} = \dfrac{20}{\sqrt{420}} \\
+			\theta &= \arccos\left(\dfrac{20}{\sqrt{420}}\right)\approx 0.21999 \approx 12.604^\circ 
+		\end{align*}
+	\end{red}
+	\item Find an equation for the plane that contains both of the lines described in this problem.
+	
+	\begin{red}
+		A normal vector is given by the cross product:
+		\[\vn = \vv\times\vw =  \langle -2, 1, 5 \rangle \times \langle -2, 1, 3 \rangle = \langle 2, 4, 0 \rangle\]
+		A point on the plane is the one we found in part (c), which is $(0, 0, 7)$. Therefore, an equation for the plane is 
+		\[ 2(x-0) + 4(y-0) + 0(z-7) = 0. \]
+		(Your equation may of course be different from mine, particularly if you computed $\vw\times\vv$ instead of $\vv\times\vw$.)
+	\end{red}
+\end{enumerate}
+
+\item (\href{https://activecalculus.org/multi/S-9-5-Lines-Planes.html#Ez_9_5_3}{AC Multi 9.5 Exercise 12}) This exercise explores key relationships between a pair of planes. Consider the following two planes: one with scalar equation $4x-5y+z = -2$, and the other which passes through the points $(1,1,1)$, $(0, 1, -1)$, and $(4, 2, -1)$.
 \begin{enumerate}
 	\item Find a vector normal to the first plane.
 	
@@ -98,12 +181,15 @@
 			6x -13y &= -9
 			\intertext{Now we get to pick some value we want for one of these variables. How about $x=0$?}
 			-13y &= -9 \\
-			y &= \tfrac{9}{13}
+			y &= \dfrac{9}{13}
 			\intertext{Cool, so now we have the $x$- and $y$-coordinates of a point that's on both planes. Substituting back into one of our $z$ equations:}
 			z &= -2 -4x +5y \\
-			&= -2 -4(0) + 5(\tfrac{9}{13}) = \tfrac{19}{13}
+			&= -2 -4(0) + 5\left(\dfrac{9}{13}\right) = \dfrac{19}{13}
 		\end{align*}
-		Therefore, $(0, \tfrac{9}{13}, \tfrac{19}{13})$ is a point that lies on both planes.
+		Therefore, $\left(0, \dfrac{9}{13}, \dfrac{19}{13}\right)$ is a point that lies on both planes.
+
+		(Other points that work include $\left(-\dfrac32, 0, 4\right)$, $\left(\dfrac{19}{22}, \dfrac{12}{11}, 0\right)$, and $(5,3,-7)$.)
+
 	\end{red}
 	\item Since these two planes do not have parallel normal vectors, the planes must intersect, and thus must intersect in a line. Observe that the line of intersection lies in both planes, and thus the direction vector of the line must be perpendicular to each of the respective normal vectors of the two planes. Find a direction vector for the line of intersection for the two planes.
 	
@@ -155,7 +241,7 @@
     
     In the picture below, I've also drawn in the shadow that $\overrightarrow{PQ}$ casts on the plane, and in red, I've drawn $\proj_\vn \overrightarrow{PQ}$.
     \end{red}
-    \includegraphics{203-keys/ps4-answer-key/9-5-13.jpg}
+    \includegraphics{../images/9-5-13.jpg}
     \item Explain why $|\comp_\vn \overrightarrow{PQ}|$ gives the distance from the point $Q$ to the plane $p$. Find this distance.
     
     \begin{red}
