@@ -204,7 +204,33 @@
 \item (\href{https://activecalculus.org/multi/S-9-8-Arc-Length-Curvature.html#Ez_9_8_4}{AC Multi 9.8 Exercise 14}) Consider the standard helix parameterized by $\vr(t) = \cos(t) \vi + \sin(t) \vj + t \vk$.
 \begin{enumerate}
     \item Recall that the unit tangent vector $\vT(t)$ is the vector tangent to the curve at time $t$ that points in the direction of motion and has length 1. Find $\vT(t)$.
+    \begin{red}
+        \begin{align*}
+            \vr'(t) &= \langle -\sin(t), \cos(t), 1 \rangle \\
+            |\vr'(t)| &= \left[\sin^2(t) + \cos^2(t) + 1^2\right] = \sqrt{2} \\
+            \vT(t) = \dfrac{\vr'(t)}{|\vr'(t)|} &= \dfrac{1}{\sqrt{2}} \langle -\sin(t), \cos(t), 1 \rangle
+        \end{align*}
+    \end{red}
     \item Explain why the fact that $|\vT(t)|=1$ implies that $\vT$ and $\vT'$ are orthogonal vectors for every value of $t$. 
+
+    \begin{red}
+        The hint is to look at the dot product of $\vT$ and $\vT'$. Where would that have come from? Well, certainly if we did the derivative of $\vT \dotp \vT$, then the product rule would make that pop out:
+        $\dfrac{d}{dt} [\vT\dotp\vT] = \vT' \dotp \vT + \vT \dotp \vT'$. But since $\vT' \dotp \vT = \vT \dotp \vT'$, this is $2(\vT\dotp \vT')$.
+
+        The other thing we know about a dot product of a vector with itself is that it's the magnitude of that vector squared: $\vT \dotp \vT = |\vT|^2 = 1^2 = 1$. Therefore, its derivative must be zero.
+
+        So now let's combine the two things we know about $\dfrac{d}{dt}[\vT\dotp\vT]$:
+        \[
+        \begin{array}{ccccc}
+             && \dfrac{d}{dt}[\vT\dotp\vT] &=& 2(\vT\dotp \vT') \\
+             &&&&\\
+             \dfrac{d}{dt}[1] &=& \dfrac{d}{dt}[\vT\dotp\vT] && \\
+             &&&&\\
+             0 &=& && 2(\vT\dotp \vT')
+        \end{array}
+        \]
+        Therefore $\vT$ is orthogonal to $\vT'$.
+    \end{red}
     \item For the given function $\vr$ with unit tangent vector $\vT(t)$ (from part (a)), determine $\vN(t) = \dfrac{1}{|\vT'(t)|} \vT'(t)$.
     \item What geometric properties does $\vN(t)$ have? How long is this vector, and how is it situated in comparison ton $\vT(t)$?
     \item Let $\vB(t) = \vT(t) \times \vN(t)$, and compute $\vB(t)$ in terms of your results in (a) and (c).
