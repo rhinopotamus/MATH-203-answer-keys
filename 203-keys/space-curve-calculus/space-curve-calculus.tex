@@ -1,6 +1,14 @@
 \documentclass[10pt]{article}
 \usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
-\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
+\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, mathptmx, siunitx}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+
+\usepackage{multicol}
 
 \setlength{\headheight}{14.5pt}
 \newcommand{\Q}{\mathbb{Q}}
@@ -15,6 +23,7 @@
 \newcommand{\vk}{\mathbf{k}}
 \newcommand{\vn}{\mathbf{n}}
 \newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
 \newcommand{\vF}{\mathbf{F}}
 \newcommand{\vL}{\mathbf{L}}
 \newcommand{\proj}{\operatorname{proj}}
@@ -35,7 +44,7 @@
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \lhead{MATH 203}
-\rhead{Spring 2020}
+\rhead{Fall 2024}
 %\lfoot{\copyright\ CLEAR Calculus 2010}
 \cfoot{}
 
@@ -46,55 +55,110 @@
 %\onehalfspacing
 \allowdisplaybreaks
 %##################################################################
-\section{PS\#5: Space curves, derivatives, and antiderivatives - \red{Answer key} }
+\section{PS\#4: Calculus with space curves - \red{Answer key} }
 
 \begin{enumerate}[leftmargin=0pt]
 
-\item (AC Multi 9.6 Exercise 15) For each of the following, describe the effect of the parameter $s$ on the parametric curve $\vr(t)$ in the interval $[0, 2\pi]$.
+\item (\href{https://activecalculus.org/multi/S-9-7-Vector-Valued-Functions-Derivatives.html#Ez_9_7_1}{AC Multi 9.7 Exercise 13}) Compute the derivative of each of the following functions in two different ways: (1) use the rules provided in the theorem stated just after Activity 9.7.3, and (2) rewrite each given function so that it is stated as a single function (either a scalar function or a vector-valued function with three components), and differentiate component-wise. Compare your answers to ensure that they are the same.
 \begin{enumerate}
-    \item $\vr(t) = \langle \cos(t), \sin(t) +s \rangle$
+    \item $\displaystyle \vr(t) = \sin(t) \langle 2t, t^2, \arctan(t) \rangle$
     
     \begin{red}
-    Increasing $s$ appears to move the graph in the positive $y$ direction.
+        Using the scalar product rule:
+        \begin{align*}
+            \frac{d\vr}{dt} &= \left(\dfrac{d}{dt}\sin(t)\right) 
+            \langle 2t, t^2, \arctan(t) \rangle
+            + \sin(t)
+            \left(\dfrac{d}{dt} \langle 2t, t^2, \arctan(t) \rangle\right) \\
+            &= \cos(t) \langle 2t, t^2, \arctan(t) \rangle
+            + \sin(t) \left\langle 2, 2t, \dfrac{1}{1+t^2} \right\rangle \\
+            &= \left\langle 2t\cos(t) + 2\sin(t),
+                            t^2\cos(t)+2t\sin(t),
+                            \arctan(t) \cos(t) + \dfrac{\sin(t)}{1+t^2} \right\rangle
+        \end{align*}
+        And rewriting first:
+        \begin{align*}
+            \vr(t) &= \langle 2t \sin(t) , t^2 \sin(t) , \arctan(t) \sin(t)  \rangle \\
+            \frac{d\vr}{dt} &= \left\langle
+                    \left(\frac{d}{dt} 2t\right) \sin(t) + 2t \left(\frac{d}{dt}\sin(t)\right),
+                    \left(\frac{d}{dt}t^2\right)\sin(t) + t^2 \left(\frac{d}{dt}\sin(t)\right),
+                    \left(\frac{d}{dt}\arctan(t)\right) \sin(t) + \arctan(t) \left(\frac{d}{dt} \sin(t) \right)
+                \right\rangle \\
+                &= \left\langle 2t\cos(t) + 2\sin(t),
+                t^2\cos(t)+2t\sin(t),
+                \dfrac{\sin(t)}{1+t^2} + \arctan(t) \cos(t) \right\rangle
+        \end{align*}
     \end{red}
-    \item $\vr(t) = \langle \cos(t) - s, \sin(t)\rangle$
-    
-    \begin{red}
-    Increasing $s$ appears to move the graph in the negative $x$ direction.
+
+    \item $\vs(t) = \vr(2^t)$, where $\vr(t) = \langle t+2, \ln(t), 1 \rangle$ \begin{red}
+        -- Note that $\vr'(t) = \langle 1, \frac1t, 0 \rangle$
     \end{red}
-    \item $\vr(t) = \langle s \cos(t), \sin(t)\rangle$
     
     \begin{red}
-    Increasing $s$ appears to stretch the graph along the $x$-axis.
+        Using the chain rule first:
+        \begin{align*}
+            \vs'(t) &= \vr'(2^t)\, \frac{d}{dt}2^t \\
+            &=\left\langle 1, \dfrac{1}{2^t}, 0\right\rangle
+            \, 2^t \ln(2) \\
+            &= \left\langle 2^t \ln(2), \ln(2), 0 \right\rangle
+        \end{align*}
+        And simplifying first:
+        \begin{align*}
+            \vs(t) &= \vr(2^t) = \langle 2^t + 2, \ln(2^t), 1\rangle 
+            = \langle 2^t + 2, t\ln(2), 1\rangle \\
+            \vs'(t) &= \langle 2^t \ln(2), \ln(2), 0 \rangle
+        \end{align*}
     \end{red}
-    \item $\vr(t) = \langle s \cos(t), s \sin(t)\rangle$
+    \item $\displaystyle \vr(t) = \langle \cos(t), \sin(t), t \rangle \dotp \langle -\sin(t), \cos(t), 1 \rangle$
     
     \begin{red}
-    Increasing $s$ appears to increase the radius of the circle.
+        Using the dot product rule:
+        \begin{align*}
+            r'(t) &= \left(\frac{d}{dt}\langle \cos(t), \sin(t), t \rangle \right)\dotp \langle -\sin(t), \cos(t), 1 \rangle
+            + \langle \cos(t), \sin(t), t \rangle \dotp \left(\frac{d}{dt} \langle -\sin(t), \cos(t), 1 \rangle\right) \\
+            &= \langle -\sin(t), \cos(t), 1 \rangle \dotp \langle -\sin(t), \cos(t), 1 \rangle 
+            + \langle \cos(t), \sin(t), t \rangle \dotp \langle -\cos(t), -\sin(t), 0\rangle \\
+            &= \left[ \sin^2(t) + \cos^2(t) + 1 \right]
+            + \left[ -\cos^2(t) -\sin^2(t) + 0\right] = 1 + 1 - 1 + 0 = 1 (!!)
+        \end{align*}
+        And rewriting first:
+        \begin{align*}
+            r(t) &= cos(t)\cdot(-\sin(t)) + \sin(t)\cdot\cos(t) + t\cdot 1 \\
+            r(t) &= t \, (!!) \\
+            r'(t) &= 1
+        \end{align*}
     \end{red}
-    \item $\vr(t) = \langle \cos(st), \sin(st)\rangle$
+    \item $\displaystyle \vr(t) = \langle \cos(t), \sin(t), t \rangle \times \langle -\sin(t), \cos(t), 1 \rangle$
     
     \begin{red}
-    Increasing $s$ appears to increase the speed at which the trace point moves around the circle. In fact, the trace point moves around the circle $s$ times in the interval from $[0, 2\pi]$.
+        Using the cross product rule:
+        \begin{align*}
+            \vr'(t) &= \left(\dfrac{d}{dt} \langle \cos(t), \sin(t), t \rangle \right)\times 
+            \langle -\sin(t), \cos(t), 1 \rangle
+            + \langle \cos(t), \sin(t), t \rangle \times 
+            \left(\dfrac{d}{dt} \langle -\sin(t), \cos(t), 1 \rangle \right) \\
+            &= \langle -\sin(t), \cos(t), 1 \rangle
+            \times \langle -\sin(t), \cos(t), 1 \rangle
+            + \langle \cos(t), \sin(t), t \rangle
+            \times \langle -\cos(t), -\sin(t), 0 \rangle \\
+            \intertext{The first two vectors are parallel, so their cross product is $\mathbf{0}$.}
+            &= \mathbf{0} + \langle \cos(t), \sin(t), t \rangle
+            \times \langle -\cos(t), -\sin(t), 0 \rangle 
+            = \langle t\sin(t), -t\cos(t), 0 \rangle \quad\text{ (Thanks, WA!)}
+        \end{align*}
+        And finding the cross product first:
+        \begin{align*}
+            \vr(t) &= \langle \sin(t) - t\cos(t), -t\sin(t) - \cos(t), \sin^2(t) + \cos^2(t)\rangle 
+            = \langle \sin(t) - t\cos(t), -t\sin(t) - \cos(t), 1 \rangle \\
+            \vr'(t) &= \dfrac{d}{dt} \langle \sin(t) - t\cos(t), -t\sin(t) - \cos(t), 1 \rangle \\
+            &= \langle \cos(t) - (1 \cos(t) + t(-\sin(t))),
+            -(1\sin(t) + t\cos(t)) - (-\sin(t)), 0 \rangle \\
+            &= \langle t\sin(t), -t\cos(t), 0 \rangle
+        \end{align*}
     \end{red}
 \end{enumerate}
 
-\item If a particle is moving in a straight line (but maybe changing speed), what can you say about its acceleration vector? \\
-If a particle is moving at constant speed (but maybe changing direction), what can you say about its acceleration vector? (Hint: $\mathbf{a} = \mathbf{a}_T + \mathbf{a}_N$.)
-
-\begin{red}
-	The normal component of the acceleration vector is the component that causes a particle to turn. So, if the particle is moving in a straight line, the normal component of the acceleration vector must be zero -- that is, the acceleration vector must be entirely parallel to the tangent vector. (In other words, writing 
-	$\mathbf{a} = \mathbf{a}_T + \mathbf{a}_N$, we must have 
-	$\mathbf{a}_N = \mathbf{0}$, so 
-	$\mathbf{a} = \mathbf{a}_T$.)
-
-   The tangential component of the acceleration vector is the component that causes a particle to speed up or slow down. Therefore, if the particle is moving at constant speed, the tangential component of the acceleration vector must be zero -- that is, the acceleration vector must be entirely parallel to the normal vector. (In other words, writing 
-    $\mathbf{a} = \mathbf{a}_T + \mathbf{a}_N$, we must have 
-    $\mathbf{a}_T = \mathbf{0}$, so 
-    $\mathbf{a} = \mathbf{a}_N$.)
-\end{red}
-
-\item (AC Multi 9.7 Exercise 18) A central force is one that acts on an object so that the force $\vF$ is parallel to the object's position $\vr$. Since Newton's Second Law says that an object's acceleration is proportional to the force exerted on it, the acceleration $\va$ of an object moving under a central force will be parallel to its position $\vr$. For instance, the Earth's acceleration due to the gravitational force that the sun exerts on the Earth is parallel to the Earth's position vector (see figure in the textbook).
+\item (\href{https://activecalculus.org/multi/S-9-7-Vector-Valued-Functions-Derivatives.html#Ez_9_7_6}{AC Multi 9.7 Exercise 18}) A central force is one that acts on an object so that the force $\vF$ is parallel to the object's position $\vr$. Since Newton's Second Law says that an object's acceleration is proportional to the force exerted on it, the acceleration $\va$ of an object moving under a central force will be parallel to its position $\vr$. For instance, the Earth's acceleration due to the gravitational force that the sun exerts on the Earth is parallel to the Earth's position vector (see figure in the textbook).
 	    
 \begin{enumerate}
     \item If an object of mass $m$ is moving under a central force, the angular momentum vector is defined to be $\vL = m\vr \times \vv$. Assuming the mass is constant, show that the angular momentum is constant by showing that $\frac{d\vL}{dt} = \mathbf{0}$.
