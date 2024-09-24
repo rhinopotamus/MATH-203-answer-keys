@@ -26,6 +26,9 @@
 \newcommand{\vs}{\mathbf{s}}
 \newcommand{\vF}{\mathbf{F}}
 \newcommand{\vL}{\mathbf{L}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vB}{\mathbf{B}}
 \newcommand{\proj}{\operatorname{proj}}
 \newcommand{\orth}{\operatorname{orth}}
 \newcommand{\comp}{\operatorname{comp}}
@@ -196,6 +199,17 @@
     
     (Another way to see this: Certainly all the position vectors are perpendicular to $\vL$. Also, certainly all the position vectors emanate from the origin. Also, we've just found that $\vL$ is constant. So the only way this is going to happen is if all the position vectors lie in the \textbf{same} plane -- specifically, the plane containing the origin and perpendicular to the constant vector $\vL$.)
     \end{red}
+\end{enumerate}
+
+\item (\href{https://activecalculus.org/multi/S-9-8-Arc-Length-Curvature.html#Ez_9_8_4}{AC Multi 9.8 Exercise 14}) Consider the standard helix parameterized by $\vr(t) = \cos(t) \vi + \sin(t) \vj + t \vk$.
+\begin{enumerate}
+    \item Recall that the unit tangent vector $\vT(t)$ is the vector tangent to the curve at time $t$ that points in the direction of motion and has length 1. Find $\vT(t)$.
+    \item Explain why the fact that $|\vT(t)|=1$ implies that $\vT$ and $\vT'$ are orthogonal vectors for every value of $t$. 
+    \item For the given function $\vr$ with unit tangent vector $\vT(t)$ (from part (a)), determine $\vN(t) = \dfrac{1}{|\vT'(t)|} \vT'(t)$.
+    \item What geometric properties does $\vN(t)$ have? How long is this vector, and how is it situated in comparison ton $\vT(t)$?
+    \item Let $\vB(t) = \vT(t) \times \vN(t)$, and compute $\vB(t)$ in terms of your results in (a) and (c).
+    \item What geometric properties does $\vB(t)$ have? How long is this vector, and how is it situated in comparison ton $\vT(t)$ and $\vN(t)$?
+    \item Sketch a plot of the given helix, and compute and sketch $\vT\left(\dfrac\pi2\right)$, $\vN\left(\dfrac\pi2\right)$, and $\vB\left(\dfrac\pi2\right)$.
 \end{enumerate}
 
 \end{enumerate}
