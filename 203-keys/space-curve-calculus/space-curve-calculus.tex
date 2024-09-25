@@ -369,13 +369,55 @@ For each given function $\vr$, determine $\int \vr(t)\, dt$. In addition, recall
 \item (\href{https://activecalculus.org/multi/S-9-7-Vector-Valued-Functions-Derivatives.html#Ez_9_7_5}{AC Multi 9.7 Exercise 17}) In this exercise, we develop the formula for the position function of a projectile that has been launched at an initial speed of $|\vv_0|$ and a launch angle of $\theta$. Recall that $\va(t) = \langle 0, -g\rangle$ is the constant acceleration of the projectile at any time $t$.
 \begin{enumerate}
     \item Find all velocity vectors for the given acceleration vector $\va(t)$. When you anti-differentiate, remember that there is an arbitrary constant that arises in each component.
+    \begin{red}
+        \begin{equation*}
+            \vv(t) = \int \va(t)\, dt = \left\langle
+                \int 0\, dt,
+                \int -g\, dt
+            \right\rangle
+            = \left\langle
+                c_1, -gt + c_2
+            \right\rangle
+        \end{equation*}
+    \end{red}
     \item Use the given information about initial speed and launch angle to find $\vv_0$, the initial velocity of the projectile. You will want to write the vector in terms of its components, which will involve $\sin\theta$ and $\cos\theta$.
+    \begin{red}
+        \begin{equation*}
+            \vv_0 = 
+            \left\langle |\vv_0|\cos\theta, |\vv_0|\sin\theta \right\rangle 
+        \end{equation*}
+    \end{red}
     \item Next, find the specific velocity vector function $\vv(t)$ for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of $|\vv_0|$ and $\theta$ for the constants that arose when integrating.
+
+    \begin{red}
+        On the one hand, $\vv_0 = \left\langle |\vv_0|\cos\theta, |\vv_0|\sin\theta \right\rangle$. But on the other hand, $\vv_0 = \vv(0) = \left\langle c_1, c2 \right\rangle$. 
+        Therefore, $c_1 = |\vv_0|\cos\theta$ and $c_2 = |\vv_0|\sin\theta$. So,
+        \[\vv(t) = \left\langle |\vv_0|\cos\theta, -gt + |\vv_0|\sin\theta \right\rangle.\]
+    \end{red}
     \item Find all possible position vectors for the velocity vector $\vv(t)$ you determined in (c).
+    \begin{red}
+        \begin{align*}
+            \vr(t) = \int \vv(t)\, dt &= \left\langle \int |\vv_0|\cos\theta\, dt, \int -gt + |\vv_0|\sin\theta\,dt \right\rangle \\
+            &= \left\langle
+                (|\vv_0|\cos\theta)t + c_3, 
+                -\frac{g}{2} t^2 + (|\vv_0|\sin\theta )t + c_4
+            \right\rangle
+        \end{align*}
+    \end{red}
     \item Let $\vr(t)$ denote the position vector function for the given projectile. Use the fact that the object is fired from the position $(x_0, y_0)$ to show it follows that
     \begin{equation*}
         \vr(t) = \left\langle |\vv_0| \cos(\theta)t + x_0, -\frac{g}{2}t^2 + |\vv_0| \sin(\theta)t + y_0 \right\rangle.
     \end{equation*}
+    
+    \begin{red}
+        On the one hand, 
+        \[\vr(0) = \left\langle
+            (|\vv_0|\cos\theta)\cdot 0 + c_3, 
+            -\frac{g}{2}\cdot  0^2 + (|\vv_0|\sin\theta )\cdot 0 + c_4
+        \right\rangle = \left\langle c_3, c_4\right\rangle.\]
+        On the other hand, $\vr(0) = \vr_0 = \left\langle x_0, y_0 \right\rangle$. 
+        Therefore, $c_3 = x_0$ and $c_4 = y_0$; plugging those in gives us the requested thing, yay!
+    \end{red}
 \end{enumerate}
 
 \end{enumerate}
