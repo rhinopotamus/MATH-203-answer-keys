@@ -232,10 +232,150 @@
         Therefore $\vT$ is orthogonal to $\vT'$.
     \end{red}
     \item For the given function $\vr$ with unit tangent vector $\vT(t)$ (from part (a)), determine $\vN(t) = \dfrac{1}{|\vT'(t)|} \vT'(t)$.
+    \begin{red}
+        \begin{align*}
+            \vT(t)&= \dfrac{1}{\sqrt{2}} \langle -\sin(t), \cos(t), 1 \rangle \\
+            \vT'(t) &= \dfrac{1}{\sqrt{2}} \langle -\cos(t), -\sin(t), 0 \rangle \\
+            |\vT'(t)| &= \dfrac{1}{\sqrt{2}}\sqrt{\cos^2(t) + \sin^2(t)+0} = \dfrac{1}{\sqrt{2}} \\
+            \vN(t) = \dfrac{\vT'(t)}{|\vT'(t)}
+            &= \langle -\cos(t), -\sin(t), 0 \rangle
+        \end{align*}
+    \end{red}
     \item What geometric properties does $\vN(t)$ have? How long is this vector, and how is it situated in comparison ton $\vT(t)$?
+
+    \begin{red}
+        Since $\vN(t)$ is the unitized version of $\vT'(t)$, it has length 1, and it's orthogonal to $\vT(t)$ (because we proved that $\vT'(t)$ is orthogonal to $\vT(t)$ in part b!).
+    \end{red}
     \item Let $\vB(t) = \vT(t) \times \vN(t)$, and compute $\vB(t)$ in terms of your results in (a) and (c).
-    \item What geometric properties does $\vB(t)$ have? How long is this vector, and how is it situated in comparison ton $\vT(t)$ and $\vN(t)$?
+    \begin{red}
+        \begin{align*}
+            \vB(t) = \vT(t) \times \vN(t) 
+            &= \dfrac{1}{\sqrt{2}} \langle -\sin(t), \cos(t), 1 \rangle \times \langle -\cos(t), -\sin(t), 0 \rangle \\
+            &= \dfrac{1}{\sqrt{2}} \langle \sin(t), -\cos(t), 1 \rangle \quad \text{(Thanks, WolframAlpha!)}
+        \end{align*}
+    \end{red}
+    \item What geometric properties does $\vB(t)$ have? How long is this vector, and how is it situated in comparison to $\vT(t)$ and $\vN(t)$?
+
+    \begin{red}
+        The length of $\vB$ is 1, which you can tell either by computing directly or by noting that $|\vT\times\vB| = |\vT| \cdot |\vB| \cdot \sin\theta$, and tthe vectors $\vT$ and $\vB$ are at right angles, so $\sin\theta = 1$.
+
+        $\vB$ is perpendicular to both $\vT$ and $\vN$. ($\vB$ here stands for ``binormal'' -- it's ``the other'' normal vector.)
+    \end{red}
     \item Sketch a plot of the given helix, and compute and sketch $\vT\left(\dfrac\pi2\right)$, $\vN\left(\dfrac\pi2\right)$, and $\vB\left(\dfrac\pi2\right)$.
+
+    \begin{red}
+        Plugging and chugging:
+        \begin{align*}
+            \vT\left(\dfrac\pi2\right) &= \left\langle
+                -\dfrac{1}{\sqrt{2}}, 0, \dfrac{1}{\sqrt{2}}
+                \right\rangle \\
+            \vN\left(\dfrac\pi2\right) &= \left\langle
+                0, -1, 0
+                \right\rangle \\
+            \vB\left(\dfrac\pi2\right) &= \left\langle
+                \dfrac{1}{\sqrt{2}}, 0, \dfrac{1}{\sqrt{2}}
+                \right\rangle
+        \end{align*}
+    And here's a plot from \href{https://c3d.libretexts.org/CalcPlot3D/index.html?type=spacecurve;spacecurve=curve;curvename=r_%7B1%7D;x=cos(t);y=sin(t);z=t;visible=true;width=2;view=0;tmin=0;tmax=pi;tsteps=500;color=rgb(255,0,0);showtrace=true;tval=pi/2;constcol=false;twod=false;arrows=0;showpt=true;traceptsize=4;trace=false;vel=false;acc=false;veceqs=true;osc=false;k=false;showtorsion=false;repeat=false;bounce=false;dashed=false;tanline=false;dropcurtain=false;showtnball=true;showtnb=true;showtnbeqs=true;showtnblabels=true;showoscplane=true;showrectplane=true;shownormplane=true;optimizecurve=true;maxjointangle=10&type=window;showfunnot=false;hsrmode=0;nomidpts=true;anaglyph=-1;center=8.236391035463326,4.755282581475768,3.0901699437494714,1;focus=0,0,0,1;up=-0.35224426555364663,-0.2033683215378999,0.913545457642601,1;transparent=false;alpha=140;twoviews=false;unlinkviews=false;axisextension=0.7;shownormals=false;shownormalsatpts=false;xaxislabel=x;yaxislabel=y;zaxislabel=z;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.7500000000000002;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);lastaddedsurfaceactive=true;disabletrace=false;activefun=-1;xmin=-2;xmax=2;ymin=-2;ymax=2;zmin=0;zmax=4;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;xscalefactor=1;yscalefactor=1;zscalefactor=1;tracemode=0;keep2d=false;zoom=1.163529}{CalcPlot3D}:
+
+    \begin{center}
+        \includegraphics[width=0.85\textwidth]{../images/9-8-14.png}    
+    \end{center}
+    \end{red}
+\end{enumerate}
+
+\item (\href{https://activecalculus.org/multi/S-9-7-Vector-Valued-Functions-Derivatives.html#Ez_9_7_4}{AC Multi 9.7 Exercise 16})
+For each given function $\vr$, determine $\int \vr(t)\, dt$. In addition, recalling the Fundamental Theorem of Calculus for functions of a single variable, also evaluate $\int_0^1 \vr(t)\, dt$ for each given function $r$. Is the resulting quantity a scalar or a vector? What does it measure?
+
+\begin{red}
+    If we label the antiderivative $\int\vr(t)\, dt$ as $\mathbf{R}(t)$, then $\int_0^1 \vr(t)\, dt$ will be a vector that points from $\mathbf{R}(0)$ to $\mathbf{R}(1)$. 
+\end{red}
+
+\begin{enumerate}
+    \item $\displaystyle \vr(t) = \left\langle \cos(t), \frac{1}{t+1}, te^t \right\rangle$
+    \begin{red}
+        \begin{align*}
+            \int\vr(t)\, dt &= \left\langle 
+                \int\cos(t)\, dt, 
+                \int\frac{1}{t+1}\, dt,
+                \int te^t\, dt
+            \right\rangle \\
+            &= \left\langle
+                \sin(t), 
+                \ln|t+1|,
+                t e^t - e^t
+            \right\rangle + \vec{C} \\
+            \int_0^1\vr(t)\, dt &= \left. \left\langle
+                \sin(t), 
+                \ln|t+1|,
+                t e^t - e^t
+            \right\rangle \right|_0^1 \\
+            &= \left\langle
+                \sin(1) - \sin(0),
+                \ln(2) - \ln(1),
+                (1e^1-e^1)-(0e^0 - e^0)
+            \right\rangle
+            = \left\langle
+                \sin(1),
+                \ln(2),
+                1
+            \right\rangle
+        \end{align*}
+    \end{red}
+    \item $\displaystyle \vr(t) = \left\langle \cos(3t), \sin(2t), t \right\rangle$
+    \begin{red}
+        \begin{align*}
+            \int\vr(t)\, dt &= \left\langle
+                \frac13 \sin(3t),
+                -\frac12 \cos(2t),
+                \frac12 t^2
+            \right\rangle +\vec{C} \\
+            \int_0^1\vr(t)\, dt &= \left.\left\langle
+                \frac13 \sin(3t),
+                -\frac12 \cos(2t),
+                \frac12 t^2
+            \right\rangle \right|_0^1 \\
+            &= \left\langle
+                \frac13 \sin(3),
+                -\frac12 (\cos(2) - 1),
+                \frac12
+            \right\rangle
+        \end{align*}
+    \end{red}
+    \item $\displaystyle \vr(t) = \left\langle \frac{t}{1+t^2}, te^{t^2}, \frac{1}{1+t^2} \right\rangle$
+
+    \begin{red}
+        (The first two components require integration by substitution!)
+        \begin{align*}
+            \int\vr(t)\, dt &= \left\langle
+                \frac12 \ln(1+t^2),
+                \frac12 e^{t^2},
+                \arctan(t)
+            \right\rangle + \vec{C}\\
+            \int\vr(t)\, dt &= \left.\left\langle
+                \frac12 \ln(1+t^2),
+                \frac12 e^{t^2},
+                \arctan(t)
+            \right\rangle \right|_0^1 \\
+            &= \left\langle
+                \frac12 \ln(2),
+                \frac12 (e - 1),
+                \frac{\pi}{4}
+            \right\rangle
+        \end{align*}
+    \end{red}
+\end{enumerate}
+
+\item (\href{https://activecalculus.org/multi/S-9-7-Vector-Valued-Functions-Derivatives.html#Ez_9_7_5}{AC Multi 9.7 Exercise 17}) In this exercise, we develop the formula for the position function of a projectile that has been launched at an initial speed of $|\vv_0|$ and a launch angle of $\theta$. Recall that $\va(t) = \langle 0, -g\rangle$ is the constant acceleration of the projectile at any time $t$.
+\begin{enumerate}
+    \item Find all velocity vectors for the given acceleration vector $\va(t)$. When you anti-differentiate, remember that there is an arbitrary constant that arises in each component.
+    \item Use the given information about initial speed and launch angle to find $\vv_0$, the initial velocity of the projectile. You will want to write the vector in terms of its components, which will involve $\sin\theta$ and $\cos\theta$.
+    \item Next, find the specific velocity vector function $\vv(t)$ for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of $|\vv_0|$ and $\theta$ for the constants that arose when integrating.
+    \item Find all possible position vectors for the velocity vector $\vv(t)$ you determined in (c).
+    \item Let $\vr(t)$ denote the position vector function for the given projectile. Use the fact that the object is fired from the position $(x_0, y_0)$ to show it follows that
+    \begin{equation*}
+        \vr(t) = \left\langle |\vv_0| \cos(\theta)t + x_0, -\frac{g}{2}t^2 + |\vv_0| \sin(\theta)t + y_0 \right\rangle.
+    \end{equation*}
 \end{enumerate}
 
 \end{enumerate}
