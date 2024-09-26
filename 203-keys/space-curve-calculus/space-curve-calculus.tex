@@ -420,6 +420,55 @@ For each given function $\vr$, determine $\int \vr(t)\, dt$. In addition, recall
     \end{red}
 \end{enumerate}
 
+\item (\href{https://activecalculus.org/multi/S-9-8-Arc-Length-Curvature.html#Ez_9_8_1}{AC Multi 9.8 Exercise 11}) Consider the moving particle whose position at time $t$ in seconds is given by the vector-valued function $\vr$ defined by $\vr(t) = 5t \vi + 4\sin(3t) \vj + 4\cos(3t) \vk$.
+\begin{enumerate}
+    \item Find the unit tangent vector, $\vT(t)$, to the space curve traced by $\vr(t)$ at time $t$. Write one sentence that explains what $\vT(t)$ tells us about the particle's motion.
+    \begin{red}
+        \begin{align*}
+            \vr'(t) &= \left\langle 5, 12 \cos(3t), -12\sin(3t) \right\rangle\\
+            |\vr'(t)| &= \sqrt{
+                5^2 + 144 \cos^2(3t) + 144 \sin^2(3t) 
+            }
+            = \sqrt{25 + 144} = \sqrt{169} = 13 \\
+            \vT(t) = \dfrac{\vr'(t)}{|\vr'(t)|} &= \left\langle
+                \frac{5}{13},
+                \frac{12\cos(3t)}{13},
+                -\frac{12 \sin(3t)}{13}
+            \right\rangle
+        \end{align*}
+        $\vT(t)$ is a unit vector pointing in the direction the particle is moving at any particular time $t$.
+    \end{red}
+    \item Determine the speed of the particle moving along the space curve with the given parameterization.
+    
+    \begin{red}
+        The speed of the particle is the magnitude of the velocity, which we've happily already computed:
+        \[ |\vr'(t)| = \sqrt{
+            5^2 + 144 \cos^2(3t) + 144 \sin^2(3t) 
+        }
+        = \sqrt{25 + 144} = \sqrt{169} = 13 \]
+        (So in fact this particle is moving at constant speed.)
+    \end{red}
+    \item Find the exact distance traveled by the particle on the time interval $[0, \pi/3]$.
+
+    \begin{red}
+        Arc length = $\displaystyle \int_0^{\pi/3} |\vr'(t)| \, dt
+        = \int_0^{\pi/3} 13\, dt = \dfrac{13\pi}{3}$
+    \end{red}
+    \item Find the average velocity of the particle on the time interval $[0, \pi/3]$.
+
+    \begin{red}
+        The average velocity is the total distance traveled divided by the total time elapsed, which you will certainly agree is $13$.
+    \end{red}
+    \item Determine the parameterization of the given curve with respect to arc length.
+
+    \begin{red}
+        Since the speed of the particle is constant, to achieve a parameterization that travels at unit speed, we need only divide by the constant speed:
+        \[\vr(t) = \left\langle
+            \frac{5t}{13}, \frac{4\sin(3t)}{13}, \frac{4\cos(3t)}{13}
+        \right\rangle \]
+    \end{red}
+\end{enumerate}
+
 \end{enumerate}
 	
 \end{document}
