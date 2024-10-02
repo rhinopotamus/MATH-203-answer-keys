@@ -1,0 +1,116 @@
+\input{../header.tex}
+
+\begin{document}
+%
+
+
+%\onehalfspacing
+\allowdisplaybreaks
+%##################################################################
+\section{PS\#7 -- Chain rule - \red{Answer key} }
+
+\begin{enumerate}[leftmargin=0pt]
+    
+    \item (\href{https://activecalculus.org/multi/S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-7-13}{AC Multi 10.5 Exercise 13}) Suppose that $T = x^2 + y^2 - 2z$ where
+    \begin{align*}
+    x &= \rho\sin(\phi)\cos(\theta)\\
+    y &= \rho\sin(\phi)\sin(\theta)\\
+    z &= \rho\cos(\phi)
+    \end{align*}
+    \begin{enumerate}
+        \item[a.] Construct a tree diagram representing the dependencies among the variables.
+        
+        \begin{red}
+        \begin{center}
+        \begin{tikzpicture}[level distance=1.5cm,
+          level 1/.style={sibling distance=3cm},
+          level 2/.style={sibling distance=1cm}]
+          \node {$T$}
+            child {node {$x$}
+              child {node {$\rho$}}
+              child {node {$\phi$}}
+              child {node {$\theta$}}
+            }
+            child {node {$y$}
+              child {node {$\rho$}}
+              child {node {$\phi$}}
+              child {node {$\theta$}}
+            }
+            child {node {$z$}
+              child {node {$\rho$}}
+              child {node {$\phi$}}
+              child {node {$\theta$}}
+            };
+        \end{tikzpicture}
+        \end{center}
+        (In case you're curious, I generated this tree diagram using the very good TikZ library ``trees''. I can share the LaTeX source if you're interested.)
+        \end{red}
+        
+        
+        \item[b.] Apply the chain rule to find the partial derivatives $\dfrac{\partial T}{\partial\rho}$, $\dfrac{\partial T}{\partial\phi}$, and $\dfrac{\partial T}{\partial\theta}$.
+        
+        \begin{red}
+        We'll just read the chain rule off the tree:
+        \begin{align*}
+            \dfrac{\partial T}{\partial\rho} &= 
+            \dfrac{\partial T}{\partial x}\cdot
+            \dfrac{\partial x}{\partial\rho}
+            + 
+            \dfrac{\partial T}{\partial y}\cdot
+            \dfrac{\partial y}{\partial\rho}
+            + 
+            \dfrac{\partial T}{\partial z}\cdot
+            \dfrac{\partial z}{\partial\rho} \\
+            &= 2x\cdot(\sin\phi\cos\theta) 
+            + 2y\cdot(\sin\phi\sin\theta)
+            -2\cdot(\cos\phi) \\
+            &= 2(\rho\sin\phi\cos\theta)\cdot(\sin\phi\cos\theta) 
+            + 2(\rho\sin\phi\sin\theta)\cdot(\sin\phi\sin\theta)
+            -2\cdot(\cos\phi) \\
+            &= 2\rho\sin^2\phi\cos^2\theta + 2\rho\sin^2\phi\sin^2\theta - 2\cos\phi \\
+            &= 2\rho\sin^2\phi(\cos^2\theta+\sin^2\theta) - 2\cos\phi \\
+            &= 2\rho\sin^2\phi-2\cos\phi
+            \\
+            \dfrac{\partial T}{\partial\phi} &= 
+            \dfrac{\partial T}{\partial x}\cdot
+            \dfrac{\partial x}{\partial\phi}
+            + 
+            \dfrac{\partial T}{\partial y}\cdot
+            \dfrac{\partial y}{\partial\phi}
+            + 
+            \dfrac{\partial T}{\partial z}\cdot
+            \dfrac{\partial z}{\partial\phi} \\
+            &= 2x\cdot(\rho\cos\phi\cos\theta)
+            + 2y\cdot(\rho\cos\phi\sin\theta)
+            -2  \cdot(-\rho\sin\phi) \\
+            &= 2(\rho\sin\phi\cos\theta)\cdot(\rho\cos\phi\cos\theta)
+            + 2(\rho\sin\phi\sin\theta)\cdot(\rho\cos\phi\sin\theta)
+            +2  \rho\sin\phi \\
+            &= 2\rho^2\sin\phi\cos\phi \cdot (\cos^2\theta + \sin^2 \theta) + 2\rho\sin\phi \\
+            &= 2\rho^2\sin\phi\cos\phi + 2\rho\sin\phi
+            \\
+            \dfrac{\partial T}{\partial\theta} &= 
+            \dfrac{\partial T}{\partial x}\cdot
+            \dfrac{\partial x}{\partial\theta}
+            + 
+            \dfrac{\partial T}{\partial y}\cdot
+            \dfrac{\partial y}{\partial\theta}
+            + 
+            \dfrac{\partial T}{\partial z}\cdot
+            \dfrac{\partial z}{\partial\theta} \\
+            &= 2x\cdot(\rho\sin\phi(-\sin\theta)) 
+            + 2y\cdot(\rho\sin\phi\cos\theta)
+            -2 \cdot (0) \\
+            &= -2(\rho\sin\phi\cos\theta)\cdot(\rho\sin\phi\sin\theta) 
+            +2(\rho\sin\phi\sin\theta)\cdot(\rho\sin\phi\cos\theta) \\
+            &= -2\rho^2\sin^2\phi\cos\theta\sin\theta + 2\rho^2\sin^2\phi\sin\theta\cos\theta = 0
+        \end{align*}
+        \end{red}
+    \end{enumerate}
+\end{enumerate}
+
+\begin{red}
+\textbf{Learning Targets Reflection:} Maybe S1, maybe S2, D5, D6.
+\end{red}
+
+\end{document}

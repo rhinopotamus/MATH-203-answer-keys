@@ -1,47 +1,4 @@
-\documentclass[10pt]{article}
-\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
-\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx}
-
-\setlength{\headheight}{14.5pt}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\vu}{\mathbf{u}}
-\newcommand{\vv}{\mathbf{v}}
-\newcommand{\vw}{\mathbf{w}}
-\newcommand{\vi}{\mathbf{i}}
-\newcommand{\vj}{\mathbf{j}}
-\newcommand{\vk}{\mathbf{k}}
-\newcommand{\vn}{\mathbf{n}}
-\newcommand{\vr}{\mathbf{r}}
-\newcommand{\va}{\mathbf{a}}
-\newcommand{\vF}{\mathbf{F}}
-\newcommand{\vL}{\mathbf{L}}
-\newcommand{\vT}{\mathbf{T}}
-\newcommand{\vN}{\mathbf{N}}
-\newcommand{\proj}{\operatorname{proj}}
-\newcommand{\orth}{\operatorname{orth}}
-\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
-
-% Solution text is in red. If you want the solutions to show, remove the \iffalse from the definition of the \red command.
-%\newcommand{\red}[1]{ %\iffalse
-%	\textcolor{red}{#1} }%\fi}
-
-\newenvironment{red}{\color{red}}{\ignorespacesafterend}
-\newcommand{\blue}[1]{\textcolor{blue}{#1}}
-\newcommand{\green}[1]{\textcolor{green}{#1}}
-\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
-%
-\hyphenpenalty=5000
-\setlength{\parindent}{0in}
-%\oddsidemargin=-.25in
-\allowdisplaybreaks
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-\lhead{MATH 201}
-\rhead{Fall 2019}
-%\lfoot{\copyright\ CLEAR Calculus 2010}
-\cfoot{}
+\input{../header.tex}
 
 \begin{document}
 %
@@ -53,6 +10,186 @@
 \section{PS\#5 - Arc length, curvature, limits - \red{Answer key} }
 
 \begin{enumerate}[leftmargin=0pt]
+    \item Choose your favorite 3D space curve from the Examples menu in CalcPlot3D. Calculate its arc length. Use Wolfram$|$Alpha or similar to calculate the integral numerically because it's probably impossible to find an antiderivative. Look at your space curve and say why the number you got makes sense.
+        
+    \begin{red}
+    I chose Viviani's curve (which, interestingly, is the intersection between a sphere and a cylinder that's tangent to the sphere and goes through the center of the sphere).
+    
+    The integrand is $|\vr'(t)|$:
+    \begin{align*}
+        \vr(t) &= \left\langle 1 + \cos t, \sin t, 2 \sin \tfrac{t}{2} \right\rangle \\
+        \vr'(t) &= \left\langle -\sin t, \cos t, \cos \tfrac{t}{2} \right\rangle \\
+        |\vr'(t)| &= \sqrt{ 
+        (-\sin t)^2 + (\cos t)^2 + \left(\cos \tfrac{t}{2}\right)^2
+        }\\
+        &= \sqrt{\sin^2 t + \cos^2 t + \cos^2\left(\tfrac{t}{2}\right)} \\
+        &= \sqrt{1 + \cos^2\left(\tfrac{t}{2}\right)}
+    \end{align*}
+    (I imagine I could use some trig identities to simplify this further, but I don't ever remember any trig identities besides the Pythagorean identity, lol.)
+    
+    My bounds of integration should be from $-2\pi$ to $2\pi$, based on the bounds that are programmed into CalcPlot3D. As I look at the ``trace'' arrows moving around the curve, this does indeed appear to produce one full trip around the curve.
+    
+    So, my integral should be:
+    \[ \int_{-2\pi}^{2\pi} \sqrt{1 + \cos^2\left(\tfrac{t}{2}\right)} \, dt \]
+    This integrand probably does not have an antiderivative. That means I can't use the fundamental theorem of calculus to compute the definite integral. Darn! I'll just use Wolfram$|$Alpha instead. Fun fact: you can type LaTeX directly into Wolfram$|$Alpha and it will interpret it correctly. Here's my result:
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{../images/wa-arc-length.png}
+    \end{center}
+    This whole business about ``the complete elliptic integral of the second kind'' is W$|$A telling you that there's no elementary antiderivative of this particular integrand. Fortunately, it's smart enough to compute a pretty good numerical approximation, 15.2808.
+    
+    This value does seem plausible. I think you could reasonably approximate this curve by gluing a couple of circles with radius $\sqrt{2}$ together, and each one of those is going to have circumference $2\cdot\pi\cdot\sqrt{2} \approx 2 \cdot 3 \cdot 1.5 = 9$. So getting something close to 18 is pretty good, I guess.
+    \end{red}
+    
+    \item (AC Multi 10.1 Exercise 15) Use the properties of continuity to determine the set of points at which each of the following functions is continuous. Justify your answers.
+    \begin{enumerate}
+        \item The function $f$ defined by $f(x,y) = \dfrac{x+2y}{x-y}$
+        
+        \begin{red}
+        This function is continuous everywhere the denominator is nonzero -- that is, whenever $x\neq y$.
+        \end{red}
+        \item The function $g$ defined by $g(x,y) = \dfrac{\sin(x)}{1+e^y}$
+        
+        \begin{red}
+        The only issue here would be if the denominator was ever zero -- that is, if $1+e^y = 0$. However, since $e^y$ is always positive, $1+e^y$ is never 0, so this function is continuous for all $(x, y)\in \R^2$.
+        \end{red}
+        \item The function $h$ defined by \begin{equation*}
+        h(x,y) = \begin{cases} 
+            \dfrac{xy}{x^2+y^2} & \textrm{ if } (x,y) \neq (0,0)  \\ 
+            0 & \textrm{ if } (x,y) = (0,0) 
+        \end{cases}
+        \end{equation*}
+        
+        \begin{red}
+        This function is clearly ok everywhere but $(0,0)$, which is going to require a little more investigation. 
+        
+        Approaching $(0,0)$ along $y=0$, we see that $h(x,y) = h(x,0) = \dfrac{0}{x^2} = 0$, but approaching $(0, 0)$ along $y=x$, we see that $\displaystyle h(x, y) = h(x,x) = \frac{x^2}{x^2+x^2} = \frac{1}{2} $. Therefore, $\displaystyle\lim_{(x,y)\to(0,0)}h(x,y)$ does not exist, so $h$ is not continuous at $(0,0)$ -- no matter what value we define for $h$ there.
+        
+        So, overall, $h$ is continuous everywhere except $(0,0)$.
+        \end{red}
+        \item The function $k$ defined by
+        \begin{equation*}
+        k(x,y) = \begin{cases} 
+            \dfrac{x^2y^4}{x^2+y^2} & \textrm{ if } (x,y) \neq (0,0)  \\ 
+            0 & \textrm{ if } (x,y) = (0,0) 
+        \end{cases}
+        \end{equation*}
+        
+        \begin{red}
+        {\everymath{\displaystyle}
+        Again, this function is clearly ok everywhere but $(0,0)$, which is going to require a little more investigation.
+        
+        By Example 10.1.14, we know that $\lim_{(x,y)\to(0,0)} \frac{x^2y^2}{x^2+y^2} =0.$ Note that $k(x,y) = y^2 \cdot \frac{x^2y^2}{x^2+y^2}$, and that $y^2$ is continuous everywhere. By the properties of limits, 
+        \[\lim_{(x,y)\to(0,0)}  \left(y^2 \cdot \frac{x^2y^2}{x^2+y^2}\right) = \left(\lim_{(x,y)\to(0,0)} y^2 \right) \cdot \left(\lim_{(x,y)\to(0,0)} \frac{x^2y^2}{x^2+y^2}\right) = 0 \cdot 0 = 0\] Therefore, since the limit and the value of $k(0,0)$ match, $k$ is indeed continuous at $(0,0)$.
+        }
+        \end{red}
+    \end{enumerate}
+    
+    \item OPTIONAL FOR A BONUS TOKEN: Let's think about \textbf{the} unit normal vector $\vN(t)$. 
+    
+    For any space curve $\vr(t)$, you can always find the unit tangent vector $\vT(t)$ by simply ``unitizing'' $\vr'(t)$:
+    \[\vT(t) = \frac{\vr'(t)}{|\vr'(t)|}\]
+    Explain why $|\vT(t)| = 1$ means that $\vT'(t)$ is orthogonal to $\vT(t)$ at every time $t$.
+    
+    (Hint: Consider $\vT \dotp \vT$. It might be nice to take the derivative of this, so that $\vT'$ shows up. Use the product rule. But also, note that $\vT \dotp \vT = |\vT|^2 = 1$, which is a constant. What's the derivative of a constant?)
+    
+    So, if you were going to define \textbf{the} unit normal vector $\vN(t)$, how might you define it? Why does your definition make sense?
+    
+    \begin{red}
+        Following the hint, I'm going to compute $\frac{d}{dt} \left[ \vT \dotp \vT\right]:$
+        \begin{align*}
+            \frac{d}{dt} \left[ \vT \dotp \vT\right] &= 
+            \frac{d}{dt}[\vT] \dotp \vT + \vT \dotp \frac{d}{dt}[\vT]\\
+            &= \vT' \dotp \vT + \vT \dotp \vT' \\
+            &= 2 (\vT' \dotp \vT)
+        \end{align*}
+        But on the other hand, since $\vT \dotp \vT = 1$, $\frac{d}{dt} \left[ \vT \dotp \vT\right]$ has to equal 0. Therefore, 
+        \[0 = 2 (\vT' \dotp \vT),\]
+        so $\vT'$ must be orthogonal to $\vT$. Yay!
+        
+        So, if I was going to define \textbf{the} unit normal vector $\vN(t)$, I might say $\vN(t) = \dfrac{\vT'(t)}{|\vT'(t)|}$. It's always orthogonal to $\vT(t)$, so it's always normal to the space curve $\vr(t)$.
+    \end{red}
+    
+    {\everymath{\displaystyle}
+    \item OPTIONAL FOR A BONUS TOKEN (AC Multi 9.8 Exercise 15) In this exercise we verify the curvature formula \[\kappa = \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{\lvert \vr'(t) \rvert^3}.\]
+    \begin{enumerate}
+        \item Explain why $\displaystyle \lvert \vr'(t) \rvert = \frac{ds}{dt}.$
+        
+        \begin{red}
+            Let's start by remembering what $s(t)$ is: it's the function that tells us how far we've gone by time $t$, so it's the accumulation function of the speed of the particle:
+            \begin{align*}
+                 s(t) &= \int_0^t |\vr'(u)|\ du
+                 \intertext{Therefore,}
+                 \frac{ds}{dt} &= \frac{d}{dt} \left[ \int_0^t |\vr'(u)|\ du\right] = |\vr'(t)|,
+            \end{align*}
+            by the fundamental theorem of calculus.
+        \end{red}
+        
+        \item Use the fact that $\vT(t) = \frac{\vr'(t)}{\lvert \vr'(t) \rvert}$ and $\lvert \vr'(t) \rvert = \frac{ds}{dt}$ to explain why $\vr'(t) = \frac{ds}{dt} \vT(t)$.
+        
+        \begin{red}
+        Let's start with $\frac{ds}{dt}\cdot \vT(t)$ and just substitute some stuff in.
+            \begin{align*}
+                \frac{ds}{dt}\cdot \vT(t) &= 
+                |\vr'(t)|\cdot \vT(t) =
+                |\vr'(t)| \cdot \left(\frac{\vr'(t)}{\lvert \vr'(t) \rvert}\right) = \vr'(t).
+            \end{align*}
+        \end{red}
+        
+        \item The Product Rule shows that $\vr''(t) = \frac{d^2s}{dt^2} \vT(t) + \frac{ds}{dt} \vT'(t).$ Explain why $\vr'(t) \times \vr''(t) = \left(\frac{ds}{dt}\right)^2 (\vT(t) \times \vT'(t)).$
+        
+        \begin{red}
+            \begin{align*}
+                \vr'(t) \times \vr''(t) &=
+                \left[\frac{ds}{dt}\cdot \vT(t)\right]
+                \times
+                \left[\frac{d^2s}{dt^2} \vT(t) + \frac{ds}{dt} \vT'(t)\right]
+                \intertext{$\frac{ds}{dt}$ is a scalar, so we can factor it out of the first term:}
+                &= \frac{ds}{dt} \left(
+                \left[\vT(t)\right]
+                \times
+                \left[\frac{d^2s}{dt^2} \vT(t) + \frac{ds}{dt} \vT'(t)\right]
+                \right)
+                \intertext{We know the cross product distributes:}
+                &= \frac{ds}{dt} \left(
+                \left[\vT(t) \times \frac{d^2s}{dt^2} \vT(t) \right] +
+                \left[\vT(t) \times \frac{ds}{dt} \vT'(t) \right]
+                \right)
+                \intertext{The first cross product is $\mathbf{0}$, since $\vT(t)$ is certainly parallel to $\frac{d^2s}{dt^2} \vT(t).$ }
+                &= \frac{ds}{dt} \left(\vT(t) \times \frac{ds}{dt} \vT'(t) \right)
+                \intertext{We can again factor out a $\frac{ds}{dt}$, this time from the second term:}
+                &= \left( \frac{ds}{dt} \right)^2 (\vT(t) \times \vT'(t))
+            \end{align*}
+            Yay, we have arrived at what we wanted.
+        \end{red}
+        \item In the previous exercise (\#3 on this Problem Set), we explained why $|\vT(t)| = 1$ means that $\vT'(t)$ is orthogonal to $\vT(t)$ at every time $t$. Explain what this tells us about $|\vT(t) \times \vT'(t)|$ and conclude that \[\lvert \vr'(t) \times \vr''(t) \rvert = \left(\frac{ds}{dt}\right)^2 \lvert \vT'(t) \rvert.\]
+        
+        \begin{red}
+            I'm going to use the fact that $|\vu\times\vv| = |\vu||\vv|\sin(\theta)$. In this case, $|\vT(t) \times \vT'(t)| = |\vT(t)| \cdot |\vT'(t)| \cdot \sin(\theta)$, and $\sin(\theta) = 1$ since the two vectors are always orthogonal. Therefore, $|\vT(t) \times \vT'(t)| = |\vT(t)| \cdot |\vT'(t)| = 1 \cdot |\vT'(t)| = |\vT'(t)|$, since $|\vT(t)| =1$.
+            Therefore, 
+            \begin{align*}
+                |\vr'(t) \times \vr''(t)| &=
+                \left\lvert \left( \frac{ds}{dt} \right)^2 (\vT(t) \times \vT'(t)) \right \rvert \\
+                &= \left( \frac{ds}{dt} \right)^2 \lvert \vT(t) \times \vT'(t) \rvert \\
+                &= \left( \frac{ds}{dt} \right)^2 |\vT'(t)|.
+            \end{align*}
+        \end{red}
+        
+        \item Finally, use the fact that $\kappa = \frac{\lvert \vT'(t) \rvert }{\lvert \vr'(t) \rvert}$ to verify that $\kappa = \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{\lvert \vr'(t) \rvert^3}.$
+        
+        \begin{red}
+            Since $\lvert \vr'(t) \times \vr''(t) \rvert = \left(\frac{ds}{dt}\right)^2 \lvert \vT'(t) \rvert$, it's certainly true that $|\vT'(t)| = \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{\left(\frac{ds}{dt}\right)^2}$, and since $\frac{ds}{dt} = |\vr'(t)|$, it's certainly true that $\frac{\lvert \vr'(t) \times \vr''(t) \rvert}{\left(\frac{ds}{dt}\right)^2} = \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{|\vr'(t)|^2}$. Therefore,
+            \begin{align*}
+                \kappa &= \frac{\lvert \vT'(t) \rvert }{\lvert \vr'(t) \rvert} \\
+                &= \frac{1}{\lvert \vr'(t) \rvert} \cdot |\vT'(t)| \\
+                &=  \frac{1}{\lvert \vr'(t) \rvert} \cdot \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{|\vr'(t)|^2} \\
+                &= \frac{\lvert \vr'(t) \times \vr''(t) \rvert}{|\vr'(t)|^3}.
+            \end{align*}
+            Phew, that was some serious algebra!!
+        \end{red}
+    \end{enumerate}
+    }
+
+
     \item For any space curve $\vr(t)$, you can always find the unit tangent vector $\vT(t)$ by simply ``unitizing'' $\vr'(t)$:
     \[\vT(t) = \frac{\vr'(t)}{|\vr'(t)|}\]
     Explain why $|\vT(t)| = 1$ means that $\vT'(t)$ is orthogonal to $\vT(t)$ at every time $t$.

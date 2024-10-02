@@ -11,6 +11,20 @@
 
 \begin{enumerate}[leftmargin=0pt]
     
+    \item It's always true that the gradient points in the local direction of steepest ascent, but it's not always true that the gradient points directly at the maximum of the function. Give an example of something where the gradient doesn't point directly at the maximum. Explain why your example works. 
+    
+    \begin{red}
+    Personally, my favorite example is Grandeur Peak, which is that mountain that's sort of at the east end of 3300 South. It has a really striking switchback ridge of exposed rock a little to the south of the peak, as you view it from the valley. I think about the gradient every time I look at that mountain. :) 
+    
+    Here's an overhead satellite view I grabbed from Google Maps:
+    
+    \includegraphics[width=\textwidth]{../images/grandeur.png}
+    
+    If you were standing directly on that ridge, the direction of steepest ascent would be along the ridge -- and the ridge points maybe $30^\circ$ or $45^\circ$ away from the peak.
+    
+    What's more, if you were standing in that little bowl right below the ridge, the direction of steepest ascent would be up to the top of the ridge, which is almost $180^\circ$ away from the peak!
+    \end{red}
+    
     \item Here's an absolutely classic problem that I think is kind of a rite of passage for students in a multivariate calculus course: the lighthouse problem.
     
     In the lighthouse at Point Gradient, the lamp has been knocked slightly out of vertical, so that the axis is tilted just a little. When the light points east, the beam of light is inclined upward at 5 degrees. When the light points north, the beam of light is inclined upward at 2 degrees.
@@ -22,7 +36,7 @@
         Slope is rise over run, yeah? So $f_x(0, 0) = \tan 5^\circ$, and  $f_y(0, 0) = \tan 2^\circ$.
         
         \begin{center}
-        \includegraphics[width=0.75\textwidth]{../images/triangles.png}
+        \includegraphics[width=0.5\textwidth]{../images/triangles.png}
         \end{center}
         \end{red}
         \item What's $\del f(0, 0)$? 
@@ -36,23 +50,12 @@
         
         \begin{red}
         My one favorite fact about the gradient is that it points in the direction of steepest slope -- in other words, most significant incline from horizontal. So, the light beam points in the direction $\del f = \langle \tan 5^\circ, \tan 2^\circ\rangle$ when it's most significantly inclined from horizontal. This is about $21.76^\circ$ north of east.
-        
-        \begin{center}
-            \includegraphics[width=0.6\textwidth]{../images/map.png}
-        \end{center}
         \end{red}
-        
-        \pagebreak
-        
         \item What is the maximum angle of elevation of the plane of the light beam from horizontal? (Hint: you'll now have to do some inverse trigonometry.) 
         
         \begin{red}
         My other favorite fact about the gradient is that its magnitude is the value of the steepest slope. In our case, $|\del f| = \sqrt{(\tan 5^\circ)^2 + (\tan 2^\circ)^2} \approx \sqrt{0.0089} \approx 0.0942.$ This is our rise over run: the plane of the beam of light is inclined by this amount from horizontal when it points in the direction of $\del f$. So if we were to draw a triangle again, we'd have a rise of 0.0942 and a run of 1, which means that our angle is $\arctan(0.0942) \approx 5.381^\circ.$
         \end{red}
-        
-        \begin{center}
-            \includegraphics[width=0.85\textwidth]{../images/max-elevation.png}
-        \end{center}
         \item Do you think we should be worried about this amount of tilt? I'd hate to have a ship out there that isn't able to see the lighthouse because the beam is shooting too high.
         
         \begin{red}
@@ -60,6 +63,6 @@
         \end{red}
     \end{enumerate}
     
-\end{enumerate}
+    \end{enumerate}
 
 \end{document}

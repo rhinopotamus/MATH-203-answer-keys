@@ -1,47 +1,4 @@
-\documentclass[10pt]{article}
-\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
-\usepackage{ifpdf,amsmath, amssymb, comment, color, graphicx, stmaryrd,setspace,enumitem,tikz, fancyhdr, wrapfig, textcomp, units, mathptmx, siunitx, multicol}
-
-\setlength{\headheight}{14.5pt}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\vu}{\mathbf{u}}
-\newcommand{\vv}{\mathbf{v}}
-\newcommand{\vw}{\mathbf{w}}
-\newcommand{\vi}{\mathbf{i}}
-\newcommand{\vj}{\mathbf{j}}
-\newcommand{\vk}{\mathbf{k}}
-\newcommand{\vn}{\mathbf{n}}
-\newcommand{\vr}{\mathbf{r}}
-\newcommand{\va}{\mathbf{a}}
-\newcommand{\vF}{\mathbf{F}}
-\newcommand{\vL}{\mathbf{L}}
-\newcommand{\vT}{\mathbf{T}}
-\newcommand{\vN}{\mathbf{N}}
-\newcommand{\proj}{\operatorname{proj}}
-\newcommand{\orth}{\operatorname{orth}}
-\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
-
-% Solution text is in red. If you want the solutions to show, remove the \iffalse from the definition of the \red command.
-%\newcommand{\red}[1]{ %\iffalse
-%	\textcolor{red}{#1} }%\fi}
-
-\newenvironment{red}{\color{red}}{\ignorespacesafterend}
-\newcommand{\blue}[1]{\textcolor{blue}{#1}}
-\newcommand{\green}[1]{\textcolor{green}{#1}}
-\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
-%
-\hyphenpenalty=5000
-\setlength{\parindent}{0in}
-%\oddsidemargin=-.25in
-\allowdisplaybreaks
-\pagestyle{fancy}
-\renewcommand{\headrulewidth}{0pt}
-\lhead{MATH 203}
-\rhead{Spring 2020}
-%\lfoot{\copyright\ CLEAR Calculus 2010}
-\cfoot{}
+\input{../header.tex}
 
 \begin{document}
 %
@@ -53,9 +10,9 @@
 \section{PS\#7 - Partial derivatives - \red{Answer key} }
 
 \begin{enumerate}[leftmargin=0pt]
-\item (Activity 10.2.4) The speed of sound $C$ traveling through ocean water is a function of temperature, salinity and depth. It may be modeled by the function
+\item (\href{https://activecalculus.org/multi/S-10-2-First-Order-Partial-Derivatives.html#A_10_2_11}{Activity 10.2.4}) The speed of sound $C$ traveling through ocean water is a function of temperature, salinity and depth. It may be modeled by the function
 \begin{equation*}
-C=1449.2+4.6T-0.055T^2+0.00029T^3+(1.34-0.01T)(S-35)+0.016D.
+C(T,S, D)=1449.2+4.6T-0.055T^2+0.00029T^3+(1.34-0.01T)(S-35)+0.016D.
 \end{equation*}
 Here $C$ is the speed of sound in meters/second, $T$ is the temperature in degrees Celsius, $S$ is the salinity in grams/liter of water, and $D$ is the depth below the ocean surface in meters.
 \begin{enumerate}
@@ -71,9 +28,9 @@ Here $C$ is the speed of sound in meters/second, $T$ is the temperature in degre
     \item Find the partial derivatives $C_T$, $C_S$, and $C_D$. 
     
     \begin{red}
-    \[C_T = 4.6 - 0.11 T + 0.00087 T^2 -0.01(S-35) \]
-    \[C_S = 1.34-0.01T \]
-    \[C_D = 0.016\]
+    \[C_T(T,S, D) = 4.6 - 0.11 T + 0.00087 T^2 -0.01(S-35) \]
+    \[C_S(T,S, D) = 1.34-0.01T \]
+    \[C_D(T,S, D) = 0.016\]
     \end{red}
     \item Evaluate each of the three partial derivatives at the point where $T=10$, $S=35$ and $D=100$. What does the sign of each partial derivative tell us about the behavior of the function $C$ at the point $(10, 35, 100)$?
     
@@ -82,10 +39,10 @@ Here $C$ is the speed of sound in meters/second, $T$ is the temperature in degre
     
     $C_S(10, 35, 100) = 1.24$ -- so the speed of sound \textbf{increases} as the salinity goes up from this point.
     
-    $C_D(10, 35, 100) = 0.016$ -- so the speed of sound goes \textbf{up} as the depth increases from this point.
+    $C_D(10, 35, 100) = 0.016$ -- so the speed of sound \textbf{increases} as the depth increases from this point.
     \end{red}
 \end{enumerate}
-\item (Activity 10.2.5) The wind chill, as frequently reported, is a measure of how cold it feels outside when the wind is blowing. In the table below, the wind chill $w$, measured in degrees Fahrenheit, is a function of the wind speed $v$, measured in miles per hour, and the ambient air temperature $T$, also measured in degrees Fahrenheit. We thus view $w$ as being of the form $w=w(v,T).$
+\item (\href{https://activecalculus.org/multi/S-10-2-First-Order-Partial-Derivatives.html#A_10_2_12}{Activity 10.2.5}) The wind chill, as frequently reported, is a measure of how cold it feels outside when the wind is blowing. In the table below, the wind chill $w$, measured in degrees Fahrenheit, is a function of the wind speed $v$, measured in miles per hour, and the ambient air temperature $T$, also measured in degrees Fahrenheit. We thus view $w$ as being of the form $w=w(v,T).$
 \[\begin{array}{rrrrrrrrrrrr}
 \hline v \backslash T & -30 & -25 & -20 & -15 & -10 & -5 & 0 & 5 & 10 & 15 & 20 \\
 \hline 5 & -46 & -40 & -34 & -28 & -22 & -16 & -11 & -5 & 1 & 7 & 13 \\
@@ -150,9 +107,9 @@ Here $C$ is the speed of sound in meters/second, $T$ is the temperature in degre
     From the original $-35^\circ$F, the perceived temperature should go up by 1 (from the decrease in windspeed) and down by 2.6 (from the decrease in temperature). So I bet $w(18, -12) \approx -35 + 1 - 2.6 -36.6^\circ$F.
     \end{red}
 \end{enumerate}
-\item (Activity 10.2.6) Shown in the figure below is a contour plot of a function $f$. The values of the function on a few of the contours are indicated to the left of the figure.
+\item (\href{https://activecalculus.org/multi/S-10-2-First-Order-Partial-Derivatives.html#A_10_2_13}{Activity 10.2.6}) Shown in the figure below is a contour plot of a function $f$. The values of the function on a few of the contours are indicated to the left of the figure.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{203-keys/ps7-answer-key/10-2-6.png}
+    \includegraphics[width=0.5\textwidth]{../images/10-2-6.png}
 \end{center}
 \begin{enumerate}
     \item Estimate the partial derivative $f_x(-2, -1).$
@@ -225,6 +182,66 @@ Here $C$ is the speed of sound in meters/second, $T$ is the temperature in degre
     \end{red}
 
 \end{enumerate}
+
+\item (\href{https://activecalculus.org/multi/S-10-2-First-Order-Partial-Derivatives.html#Ez_10_2_1_5}{AC Multi 10.2 Exercise 14}) Let $f(x, y) = \tfrac{1}{2}xy^2$ represent the kinetic energy in Joules of an object of mass $x$ in kilograms with velocity $y$ in meters per second. Let $(a, b)$ be the point $(4,5)$ in the domain of $f$.
+    \begin{enumerate}
+        \item Calculate $f_x(a,b)$.
+        
+        \begin{red}
+            First of all, let's calculate $f_x(x,y).$ Holding $y$ constant, we'll take the derivative with respect to $x$:
+            \[f_x(x,y) = \tfrac{1}{2}y^2.\]
+            Now we'll evaluate this at our point: $f_x(a, b) = f_x(4, 5) = \tfrac{1}{2}\cdot 5^2 = \tfrac{25}{2}.$
+            (By the way, the units on this quantity are Joules per kilogram.)
+        \end{red}
+        \item Explain as best you can in the context of kinetic energy what the partial derivative
+        \[f_{x}(a, b)=\lim _{h \rightarrow 0} \frac{f(a+h, b)-f(a, b)}{h}\]
+        tells us about kinetic energy.
+        
+        \begin{red}
+            This essentially tells us how much the kinetic energy changes per unit change in \textbf{mass} of the object. 
+            
+            Dimensional analysis helps: Note here since $h$ is being added to the $x$ term, it's a small change in \textbf{mass}. Thus, since the numerator has the same output as $f$, it's Joules; since the denominator is an $h$, it's kilograms. So, the units on this quantity are Joules per kilogram.
+        \end{red}
+        
+        \item Calculate $f_y(a,b)$.
+        
+        \begin{red}
+            First of all, let's calculate $f_y(x,y).$ Holding $x$ constant, we'll take the derivative with respect to $y$:
+            \[f_y(x,y) = \tfrac{1}{2}x\cdot 2y = xy.\]
+            Now we'll evaluate this at our point: $f_y(a, b) = f_y(4, 5) = 4 \cdot 5 = 20.$
+            (By the way, the units on this quantity are Joules per (meters per second).)
+            
+            
+        \end{red}
+        
+        \item Explain as best you can in the context of kinetic energy what the partial derivative
+        \[f_{y}(a, b)=\lim _{h \rightarrow 0} \frac{f(a, b+h)-f(a, b)}{h}\]
+        tells us about kinetic energy.
+        
+        \begin{red}
+            This essentially tells us how much the kinetic energy changes per unit change in \textbf{velocity} of the object. 
+            
+            Dimensional analysis helps: Note here since $h$ is being added to the $y$ term, it's a small change in \textbf{velocity}. Thus, since the numerator has the same output as $f$, it's Joules; since the denominator is an $h$, it's meters per second. So, the units on this quantity are Joules per (meters per second).
+        \end{red}
+        
+        \item Often we are given certain graphical information about a function instead of a rule. We can use that information to approximate partial derivatives. For example, suppose that we are given a contour plot of the kinetic energy function (as in the figure below) instead of a formula. Use this contour plot to approximate $f_x(4, 5)$ and $f_y(4, 5)$ as best you can. Compare to your calculations from earlier parts of this exercise.
+        
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{../images/10-2-14.png}
+        \end{center}
+        
+        \begin{red}
+            To find $f_x(4,5)$: I'm going to stand at the point $(4,5)$ and, holding $y$ constant, take a small step in the $x$ direction, and see what happens to my output values.
+            
+            When I'm on the point $(4,5)$, I'm on the $z = 50$ contour, so I know that $f(4,5) = 50$. If I take a little step in the $x$ direction, I land just a little above the $z = 60$ contour, so I know that $f(4+1, 5) \approx 60$ or $62$ish. Therefore, my step of 1 kg has produced a change of 10 or 12 Joules, so $f_x(4,5) \approx 10/1$ or $12/1$ Joules per kg. This is pretty close to the value we calculated earlier, $\tfrac{25}{2} = 12.5$.
+            
+            To find $f_y(4,5)$: I'm going to stand at the point $(4,5)$ and, holding $x$ constant, take a small step in the $y$ direction, and see what happens to my output values.
+            
+            When I'm on the point $(4,5)$, I'm on the $z = 50$ contour, so I know that $f(4,5) = 50$. If I take a little step in the $y$ direction, I land just a little above the $z = 70$ contour, so I know that $f(4, 5+1) \approx 70$ or $72$ish. Therefore, my step of 1 m/s has produced a change of 20 or 22 Joules, so $f_y(4,5) \approx 20/1$ or $22/1$ Joules per m/s. This is pretty close to the value we calculated earlier, $20$.
+            
+            
+        \end{red}
+    \end{enumerate}
 
 \end{enumerate}
 
