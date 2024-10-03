@@ -1,5 +1,56 @@
-\input{../header.tex}
+\documentclass[10pt]{article}
+\usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage{ifpdf, amsmath, amssymb, comment, color, graphicx, stmaryrd, setspace, enumitem, fancyhdr, wrapfig, textcomp, mathptmx, siunitx, multicol}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
 
+\RequirePackage{tikz}
+\usetikzlibrary{trees}
+
+\setlength{\headheight}{14.5pt}
+\newcommand{\del}{\nabla}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\comp}{\operatorname{comp}}
+\newcommand{\proj}{\operatorname{proj}}
+\newcommand{\orth}{\operatorname{orth}}
+\newcommand\dotp[1][.5]{\,\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}\,}
+
+
+\newenvironment{red}{\color{red}}{\ignorespacesafterend}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\renewcommand{\section}[1]{\begin{center} \textbf{#1} \\\end{center}}
+%
+\hyphenpenalty=5000
+\setlength{\parindent}{0in}
+%\oddsidemargin=-.25in
+\allowdisplaybreaks
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{MATH 203}
+\rhead{Fall 2024}
+%\lfoot{}
+%\cfoot{}
 \begin{document}
 %
 
@@ -7,9 +58,79 @@
 %\onehalfspacing
 \allowdisplaybreaks
 %##################################################################
-\section{PS\#7 - Partial derivatives - \red{Answer key} }
+\section{PS\#6 - Partial derivatives - \red{Answer key} }
 
 \begin{enumerate}[leftmargin=0pt]
+\item (\href{https://activecalculus.org/multi/S-10-2-First-Order-Partial-Derivatives.html#A_10_2_2}{Activity 10.2.3}) \begin{red}
+    Throughout this solution, constants are in \blue{blue}.
+\end{red}
+\begin{enumerate}
+    \item If $f(x,y) = 3x^3 - 2x^2y^5$, find the partial derivatives $f_x$ and $f_y$.
+    \begin{red}
+        \begin{align*}
+            f_x(x,y) &= \frac{\partial}{\partial x} (3x^3 - 2x^2\blue{y^5} ) &
+            f_y(x,y) &= \frac{\partial}{\partial y} (3\blue{x^3} - \blue{2x^2}y^5) \\
+            &= 9x^2 - 2(2x)\blue{y^5} &
+            &= 0 - \blue{2x^2} (5y^4) \\
+            &= 9x^2 - 4xy^5 &
+            &= -10x^2 y^4
+        \end{align*}
+    \end{red}
+    \item If $f(x,y) = \displaystyle\frac{xy^2}{x+1}$, find the partial derivatives $f_x$ and $f_y$.
+    \begin{red}
+        \begin{align*}
+            f_x(x,y) &= \frac{\partial}{\partial x} \left( \frac{x\blue{y^2}}{x+1} \right) &
+            f_y(x,y) &= \frac{\partial}{\partial y}\left( \blue{\frac{x}{x+1}} y^2 \right) \\
+            &= \blue{y^2}\frac{(x+1)(1) - (x)(1)}{(x+1)^2} &
+            &= \blue{\frac{x}{x+1}} \cdot 2y \\
+            &= \frac{y^2}{(x+1)^2} &
+            &= \frac{2xy}{x+1}
+        \end{align*}
+    \end{red}
+    \item If $g(r,s) = rs\cos(r)$, find the partial derivatives $g_r$ and $g_s$.
+    \begin{red}
+        \begin{align*}
+            g_r(r,s) &= \frac{\partial}{\partial r} (\blue{s} r\cos(r)) &
+            g_s(r,s) &= \frac{\partial}{\partial s} (\blue{r \cos(r)} s) \\
+            &= \blue{s}(r(-\sin(r)) + (1)\cos(r)) &
+            &= \blue{r \cos(r)} (1) \\
+            &= s\cos(r) - sr\sin(r) &
+            &= r\cos(r)
+        \end{align*}
+    \end{red}
+    \item Assuming $f(w,x,y) = (6w+1)\cos(3x^2+4xy^3+y)$, find the partial derivatives $f_w$, $f_x$, and $f_y$.
+    \begin{red}
+        \begin{align*}
+            f_w(w,x,y) &= \frac{\partial}{\partial w} [(6w+1)\blue{\cos(3x^2+4xy^3+y)}] &
+            f_x(w,x,y) &= \frac{\partial}{\partial x} [\blue{(6w+1)} \cos(3x^2+4x\blue{y^3}+\blue{y})] \\
+            &= (6)\blue{\cos(3x^2+4xy^3+y)} &
+            &= \blue{(6w+1)}(-\sin(3x^2+4x\blue{y^3}+\blue{y}))\cdot(6x+4\blue{y^3}) \\
+            &= 6\cos(3x^2+4xy^3+y) &
+            &= -(6w+1)(6x+4y^3)\sin(3x^2+4xy^3+y) \\
+        \end{align*}
+        \begin{align*}
+            f_y(w,x,y) &= \frac{\partial}{\partial y} [\blue{(6w+1)}\cos(\blue{3x^2}+\blue{4x}y^3+y)] \\
+            &= \blue{(6w+1)}(-\sin(\blue{3x^2}+\blue{4x}y^3+y))\cdot(\blue{4x}\cdot 3y^2 + 1) \\
+            &= -(6w+1)(12xy^2+1)\sin(3x^2+4xy^3+y)
+        \end{align*}
+    \end{red}
+    \item Find all possible first-order partial derivatives of $q(x,t,z) =
+    \displaystyle \frac{x2^tz^3}{1+x^2}$.
+    \begin{red}
+        \begin{align*}
+            q_x(x,t,z) &= \frac{\partial}{\partial x}\left(\blue{2^tz^3}\frac{x}{1+x^2}\right) &
+            q_t(x,t,z) &= \frac{\partial}{\partial t}\left(\blue{\frac{xz^3}{1+x^2}}2^t\right) &
+            q_z(x,t,z) &= \frac{\partial}{\partial z}\left(\blue{\frac{x2^t}{1+x^2}}z^3\right) \\
+            &= \blue{2^tz^3}\frac{(1+x^2)(1) - (x)(2x)}{(1+x^2)^2} &
+            &= \blue{\frac{xz^3}{1+x^2}}(2^t\ln(2)) &
+            &= \blue{\frac{x2^t}{1+x^2}}(3z^2) \\
+            &= \frac{2^t z^3 (1-x^2)}{(1+x^2)^2} &
+            &= \frac{x z^3 2^t \ln(2)}{1+x^2} &
+            &= \frac{3x 2^t z^2}{1+x^2}
+        \end{align*}
+    \end{red}
+\end{enumerate}
+
 \item (\href{https://activecalculus.org/multi/S-10-2-First-Order-Partial-Derivatives.html#A_10_2_11}{Activity 10.2.4}) The speed of sound $C$ traveling through ocean water is a function of temperature, salinity and depth. It may be modeled by the function
 \begin{equation*}
 C(T,S, D)=1449.2+4.6T-0.055T^2+0.00029T^3+(1.34-0.01T)(S-35)+0.016D.
