@@ -1,11 +1,13 @@
-\documentclass[10pt]{article}
+\documentclass[12pt]{article}
 \usepackage[margin=1in, paperwidth=8.5in, paperheight=11in]{geometry}
-\usepackage{ifpdf, amsmath, amssymb, comment, color, graphicx, stmaryrd, setspace, enumitem, fancyhdr, wrapfig, textcomp, mathptmx, siunitx, multicol}
+\usepackage{ifpdf, amsmath, amssymb, comment, color, graphicx, stmaryrd, setspace, fancyhdr, wrapfig, textcomp, mathptmx, siunitx, multicol}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     urlcolor=blue,
 }
+
+\usepackage[shortlabels]{enumitem}
 
 \usepackage{tikz}
 \usetikzlibrary{trees}
