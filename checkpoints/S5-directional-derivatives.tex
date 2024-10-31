@@ -7,13 +7,15 @@
 %\onehalfspacing
 \allowdisplaybreaks
 %##################################################################
-\section{Checkpoint: Vector operations }
-Let $\vv = \langle 1, 0, 3 \rangle $, $\vw = -3\vi + 7\vj +\vk$, and $\vu = \langle 2,2,2 \rangle$.
+\section{Checkpoint: Directional derivatives}
+The function $T(x,y) = 30 - x^2 - y^2$ measures the temperature, in degrees Celsius, at a given point $(x,y)$ on a heated metal plate, where $x$ and $y$ are measured in centimeters. An ant is walking on this plate in a straight line from the point $(1,2)$ to the point $(4,5)$. Here's a contour plot with some relevant points highlighted.
+
+\includegraphics[width=0.6\textwidth]{../images/checkpoint-directional-derivatives.png}
 
 \begin{enumerate}[(a)]
-    \item Compute $\vv\dotp\vw$. What does your result mean about $\vv$ and $\vw$?
-    \item Find the angle between $\vv$ and $\vu$.
-    \item Find a \textbf{unit} vector that is perpendicular to both $\vw$ and $\vu$.\\ (You can use Wolfram Alpha or whatever to streamline any boring computations.)
+    \item How fast is the temperature under the ant's feet changing at the beginning of its journey? Give units.
+    \item How fast is the temperature under the ant's feet changing when it's halfway through its journey? (Hint: if you draw this out you'll see that this is at the point $(3,3)$.)
+    \item The ant reaches $(4,5)$ and decides to walk directly back to the origin. Now how fast is the temperature under the ant's feet changing?
 \end{enumerate}
 	
 \end{document}
