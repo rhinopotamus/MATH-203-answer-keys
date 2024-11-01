@@ -1,0 +1,44 @@
+\input{../header}
+
+\begin{document}
+%
+
+
+%\onehalfspacing
+\allowdisplaybreaks
+%##################################################################
+\section{PS\#8 -- Directional derivatives and the gradient - \red{Answer key} }
+
+\begin{enumerate}[leftmargin=0pt]
+    
+    \item Here's an absolutely classic problem that I think is kind of a rite of passage for students in a multivariate calculus course: the lighthouse problem.
+    
+    In the lighthouse at Point Gradient, the lamp has been knocked slightly out of vertical, so that the axis is tilted just a little. When the light points east, the beam of light is inclined upward at 5 degrees. When the light points north, the beam of light is inclined upward at 2 degrees.
+    
+    \begin{enumerate}
+        \item The beam of light sweeps out a plane; let's call that plane $f(x, y)$ and say that the lighthouse is at the point $(0, 0)$ What's $f_x(0, 0)$, and what's $f_y(0, 0)$? (Hint: the answers aren't $5^\circ$ and $2^\circ$. Draw a picture and use some trigonometry to figure out the slopes.)
+        
+        \begin{red}
+        Slope is rise over run, yeah? So $f_x(0, 0) = \tan 5^\circ$, and  $f_y(0, 0) = \tan 2^\circ$.
+        \end{red}
+        \item What's $\del f(0, 0)$? 
+        
+        \begin{red}
+        $\del f(0, 0) = \langle f_x(0, 0), f_y(0, 0) \rangle = \langle \tan 5^\circ, \tan 2^\circ\rangle \approx \langle 0.087, 0.035\rangle$. 
+        \end{red}
+        \item Looking down from above on a map, in which direction is the light beam pointing when it's most significantly inclined from the horizontal? Explain. 
+        
+        \begin{red} $\del f = \langle \tan 5^\circ, \tan 2^\circ\rangle$. This is about $21.76^\circ$ north of east.
+        
+        \end{red}
+        \item What is the maximum angle of elevation of the plane of the light beam from horizontal? (Hint: you'll now have to do some inverse trigonometry.) 
+        
+        \begin{red}$|\del f| = \sqrt{(\tan 5^\circ)^2 + (\tan 2^\circ)^2} \approx \sqrt{0.0089} \approx 0.0942.$ 
+            
+            The angle is $\arctan(0.0942) \approx 5.381^\circ$ or $0.0939$ radians.
+        \end{red}
+    \end{enumerate}
+    
+\end{enumerate}
+
+\end{document}
